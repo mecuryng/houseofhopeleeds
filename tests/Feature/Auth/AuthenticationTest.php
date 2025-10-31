@@ -1,81 +1,72 @@
 <?php
 
-namespace Tests\Feature\Auth;
-
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Laravel\Fortify\Features;
-use Tests\TestCase;
+use Livewire\Volt\Volt;
 
-class AuthenticationTest extends TestCase
-{
-    use RefreshDatabase;
+test('login screen can be rendered', function () {
+    $response = $this->get('/login');
 
-    public function test_login_screen_can_be_rendered(): void
-    {
-        $response = $this->get(route('login'));
+    $response
+        ->assertOk()
+        ->assertSeeVolt('pages.auth.login');
+});
 
-        $response->assertStatus(200);
-    }
+test('users can authenticate using the login screen', function () {
+    $user = User::factory()->create();
 
-    public function test_users_can_authenticate_using_the_login_screen(): void
-    {
-        $user = User::factory()->withoutTwoFactor()->create();
+    $component = Volt::test('pages.auth.login')
+        ->set('form.email', $user->email)
+        ->set('form.password', 'password');
 
-        $response = $this->post(route('login.store'), [
-            'email' => $user->email,
-            'password' => 'password',
-        ]);
+    $component->call('login');
 
-        $response
-            ->assertSessionHasNoErrors()
-            ->assertRedirect(route('dashboard', absolute: false));
+    $component
+        ->assertHasNoErrors()
+        ->assertRedirect(route('dashboard', absolute: false));
 
-        $this->assertAuthenticated();
-    }
+    $this->assertAuthenticated();
+});
 
-    public function test_users_can_not_authenticate_with_invalid_password(): void
-    {
-        $user = User::factory()->create();
+test('users can not authenticate with invalid password', function () {
+    $user = User::factory()->create();
 
-        $response = $this->post(route('login.store'), [
-            'email' => $user->email,
-            'password' => 'wrong-password',
-        ]);
+    $component = Volt::test('pages.auth.login')
+        ->set('form.email', $user->email)
+        ->set('form.password', 'wrong-password');
 
-        $response->assertSessionHasErrorsIn('email');
+    $component->call('login');
 
-        $this->assertGuest();
-    }
+    $component
+        ->assertHasErrors()
+        ->assertNoRedirect();
 
-    public function test_users_with_two_factor_enabled_are_redirected_to_two_factor_challenge(): void
-    {
-        if (! Features::canManageTwoFactorAuthentication()) {
-            $this->markTestSkipped('Two-factor authentication is not enabled.');
-        }
-        Features::twoFactorAuthentication([
-            'confirm' => true,
-            'confirmPassword' => true,
-        ]);
+    $this->assertGuest();
+});
 
-        $user = User::factory()->create();
+test('navigation menu can be rendered', function () {
+    $user = User::factory()->create();
 
-        $response = $this->post(route('login.store'), [
-            'email' => $user->email,
-            'password' => 'password',
-        ]);
+    $this->actingAs($user);
 
-        $response->assertRedirect(route('two-factor.login'));
-        $this->assertGuest();
-    }
+    $response = $this->get('/dashboard');
 
-    public function test_users_can_logout(): void
-    {
-        $user = User::factory()->create();
+    $response
+        ->assertOk()
+        ->assertSeeVolt('layout.navigation');
+});
 
-        $response = $this->actingAs($user)->post(route('logout'));
+test('users can logout', function () {
+    $user = User::factory()->create();
 
-        $response->assertRedirect(route('home'));
-        $this->assertGuest();
-    }
-}
+    $this->actingAs($user);
+
+    $component = Volt::test('layout.navigation');
+
+    $component->call('logout');
+
+    $component
+        ->assertHasNoErrors()
+        ->assertRedirect('/');
+
+    $this->assertGuest();
+});
