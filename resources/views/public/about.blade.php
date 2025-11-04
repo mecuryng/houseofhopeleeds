@@ -43,10 +43,10 @@
         </div>
 
         <div class="mt-12 text-center">
-            <a href="{{ route('events.index') }}" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors mr-4">
+            <a href="{{ route('events') }}" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors mr-4">
                 Upcoming Events
             </a>
-            <a href="{{ route('sermons.index') }}" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+            <a href="{{ route('sermons') }}" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
                 Watch Sermons
             </a>
         </div>

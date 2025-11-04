@@ -3,7 +3,7 @@
 @section('content')
 <x-page-title>Events Management</x-page-title>
 
-<a href="{{ route('events.create') }}">+ Add Event</a><br><br>
+<a href="{{ route('admin.events.create') }}">+ Add Event</a><br><br>
 
 @if(session('success'))
 <div style="background:#d1fae5;padding:10px;">{{ session('success') }}</div><br>
@@ -19,8 +19,8 @@
 <td>{{ $event->event_date }}</td>
 <td>{{ $event->venue }}</td>
 <td>
-<a href="{{ route('events.edit', $event->id) }}">Edit</a> |
-<form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
+<a href="{{ route('admin.events.edit', $event->id) }}">Edit</a> |
+<form action="{{ route('admin.events.destroy', $event->id) }}" method="POST" style="display:inline;">
 @csrf @method('DELETE')
 <button type="submit" onclick="return confirm('Delete this event?')">Delete</button>
 </form>

@@ -34,7 +34,7 @@ public function store(Request $request)
     ]);
 
     Sermon::create($request->all());
-    return redirect()->route('sermons.index')->with('success', 'Sermon added successfully.');
+    return redirect()->route('admin.sermons.index')->with('success', 'Sermon added successfully.');
 }
 
 public function edit(Sermon $sermon)
@@ -53,13 +53,13 @@ public function update(Request $request, Sermon $sermon)
     ]);
 
     $sermon->update($request->all());
-    return redirect()->route('sermons.index')->with('success', 'Sermon updated successfully.');
+    return redirect()->route('admin.sermons.index')->with('success', 'Sermon updated successfully.');
 }
 
 public function destroy(Sermon $sermon)
 {
     $sermon->delete();
-    return redirect()->route('sermons.index')->with('success', 'Sermon deleted successfully.');
+    return redirect()->route('admin.sermons.index')->with('success', 'Sermon deleted successfully.');
 }
 
 }
