@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Sermon;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class SermonController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-   use App\Models\User;
 
 public function index()
 {

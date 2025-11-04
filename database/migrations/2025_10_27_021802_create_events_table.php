@@ -15,12 +15,12 @@ return new class extends Migration
         $table->id();
         $table->string('title');
         $table->text('description')->nullable();
-        $table->date('event_date');
-        $table->string('venue')->nullable();
+        $table->date('date');
+        $table->time('time')->nullable();
+        $table->string('location')->nullable();
         $table->timestamps();
     });
 }
-
 
     /**
      * Reverse the migrations.

@@ -14,8 +14,9 @@ return new class extends Migration
     Schema::create('sermons', function (Blueprint $table) {
         $table->id();
         $table->string('title');
-        $table->text('content')->nullable();
-        $table->date('date_preached');
+        $table->text('description')->nullable();
+        $table->date('date');
+        $table->string('video_url')->nullable();
         $table->unsignedBigInteger('pastor_id')->nullable();
         $table->foreign('pastor_id')->references('id')->on('users')->onDelete('set null');
         $table->timestamps();
