@@ -1,32 +1,44 @@
 @extends('layouts.admin')
 
 @section('content')
-<x-page-title>Events Management</x-page-title>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h1>Events</h1>
+        <a href="{{ route('admin.events.create') }}" style="padding:8px 12px;background:#1e293b;color:#fff;border:none;text-decoration:none;">Add Event</a>
+    </div>
 
-<a href="{{ route('admin.events.create') }}">+ Add Event</a><br><br>
+    @if (session('success'))
+        <div style="padding:10px;background:#dcfce7;border:1px solid #bbf7d0;margin-bottom:16px;color:#166534;">
+            {{ session('success') }}
+        </div>
+    @endif
 
-@if(session('success'))
-<div style="background:#d1fae5;padding:10px;">{{ session('success') }}</div><br>
-@endif
-
-<table border="1" width="100%" cellpadding="10">
-<tr style="background:#1e293b;color:white;">
-<th>Title</th><th>Date</th><th>Venue</th><th>Action</th>
-</tr>
-@foreach($events as $event)
-<tr>
-<td>{{ $event->title }}</td>
-<td>{{ $event->event_date }}</td>
-<td>{{ $event->venue }}</td>
-<td>
-<a href="{{ route('admin.events.edit', $event->id) }}">Edit</a> |
-<form action="{{ route('admin.events.destroy', $event->id) }}" method="POST" style="display:inline;">
-@csrf @method('DELETE')
-<button type="submit" onclick="return confirm('Delete this event?')">Delete</button>
-</form>
-</td>
-</tr>
-@endforeach
-</table>
-{{ $events->links() }}
+    <table style="width:100%;border-collapse:collapse;">
+        <thead>
+            <tr style="background:#f3f4f6;">
+                <th style="padding:12px;text-align:left;">Title</th>
+                <th style="padding:12px;text-align:left;">Date</th>
+                <th style="padding:12px;text-align:left;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($events as $event)
+                <tr>
+                    <td style="padding:12px;border-bottom:1px solid #e5e7eb;">{{ $event->title }}</td>
+                    <td style="padding:12px;border-bottom:1px solid #e5e7eb;">{{ $event->date->format('M d, Y') }}</td>
+                    <td style="padding:12px;border-bottom:1px solid #e5e7eb;">
+                        <a href="{{ route('admin.events.edit', $event) }}" style="color:#3b82f6;text-decoration:none;">Edit</a>
+                        <form action="{{ route('admin.events.destroy', $event) }}" method="POST" style="display:inline;margin-left:12px;" onsubmit="return confirm('Are you sure?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" style="color:#ef4444;background:none;border:none;cursor:pointer;">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="3" style="padding:12px;text-align:center;">No events found.</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
 @endsection

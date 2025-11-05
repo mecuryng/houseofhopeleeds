@@ -29,9 +29,6 @@ Route::get('/sermons', function () {
 
 Route::view('/donate', 'public.donate')->name('donate');
 
-// Named middleware alias for role-based checks
-Route::aliasMiddleware('role', RoleMiddleware::class);
-
 // Auth-only routes
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');

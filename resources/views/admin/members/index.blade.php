@@ -1,50 +1,46 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Members</h1>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h1>Members</h1>
+        <a href="{{ route('admin.members.create') }}" style="padding:8px 12px;background:#1e293b;color:#fff;border:none;text-decoration:none;">Add Member</a>
+    </div>
 
-    @if(session('success'))
-        <div style="padding:10px;background:#d1fae5;border:1px solid #10b981;margin-bottom:16px;color:#065f46;">
+    @if (session('success'))
+        <div style="padding:10px;background:#dcfce7;border:1px solid #bbf7d0;margin-bottom:16px;color:#166534;">
             {{ session('success') }}
         </div>
     @endif
 
-    <p><a href="{{ route('members.create') }}">Add new member</a></p>
-
-    @if($members->count())
-        <table style="width:100%;border-collapse:collapse;">
-            <thead>
+    <table style="width:100%;border-collapse:collapse;">
+        <thead>
+            <tr style="background:#f3f4f6;">
+                <th style="padding:12px;text-align:left;">Name</th>
+                <th style="padding:12px;text-align:left;">Email</th>
+                <th style="padding:12px;text-align:left;">Phone</th>
+                <th style="padding:12px;text-align:left;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($members as $member)
                 <tr>
-                    <th style="text-align:left;padding:8px;border-bottom:1px solid #e5e7eb;">Name</th>
-                    <th style="text-align:left;padding:8px;border-bottom:1px solid #e5e7eb;">Email</th>
-                    <th style="text-align:left;padding:8px;border-bottom:1px solid #e5e7eb;">Phone</th>
-                    <th style="text-align:left;padding:8px;border-bottom:1px solid #e5e7eb;">Actions</th>
+                    <td style="padding:12px;border-bottom:1px solid #e5e7eb;">{{ $member->name }}</td>
+                    <td style="padding:12px;border-bottom:1px solid #e5e7eb;">{{ $member->email }}</td>
+                    <td style="padding:12px;border-bottom:1px solid #e5e7eb;">{{ $member->phone }}</td>
+                    <td style="padding:12px;border-bottom:1px solid #e5e7eb;">
+                        <a href="{{ route('admin.members.edit', $member) }}" style="color:#3b82f6;text-decoration:none;">Edit</a>
+                        <form action="{{ route('admin.members.destroy', $member) }}" method="POST" style="display:inline;margin-left:12px;" onsubmit="return confirm('Are you sure?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" style="color:#ef4444;background:none;border:none;cursor:pointer;">Delete</button>
+                        </form>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach($members as $member)
-                    <tr>
-                        <td style="padding:8px;border-bottom:1px solid #f3f4f6;">{{ $member->name }}</td>
-                        <td style="padding:8px;border-bottom:1px solid #f3f4f6;">{{ $member->email }}</td>
-                        <td style="padding:8px;border-bottom:1px solid #f3f4f6;">{{ $member->phone }}</td>
-                        <td style="padding:8px;border-bottom:1px solid #f3f4f6;">
-                            <a href="{{ route('members.edit', $member) }}">Edit</a>
-                            |
-                            <form action="{{ route('members.destroy', $member) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" onclick="return confirm('Delete this member?')">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <div style="margin-top:16px;">
-            {{ $members->links() }}
-        </div>
-    @else
-        <p>No members found.</p>
-    @endif
+            @empty
+                <tr>
+                    <td colspan="4" style="padding:12px;text-align:center;">No members found.</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
 @endsection

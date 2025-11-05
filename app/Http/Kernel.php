@@ -23,15 +23,4 @@ class Kernel extends HttpKernel
         'api' => [],
     ];
 
-    /**
-     * The application's route middleware.
-     *
-     * These middleware may be assigned to groups or used individually.
-     *
-     * @var array<string, class-string|string>
-     */
-    protected $routeMiddleware = [
-        // Register your route middleware aliases here
-        'role' => \App\Http\Middleware\RoleMiddleware::class,
-    ];
 }

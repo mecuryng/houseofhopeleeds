@@ -47,9 +47,9 @@
     <div class="sidebar">
         <h3 style="text-align:center;">⛪ Admin Panel</h3>
         <a href="{{ route('admin.dashboard') }}">Dashboard</a>
-        <a href="{{ route('members.index') }}">Members</a>
-        <a href="#">Events</a>
-        <a href="#">Sermons</a>
+        <a href="{{ route('admin.members.index') }}">Members</a>
+        <a href="{{ route('admin.events.index') }}">Events</a>
+        <a href="{{ route('admin.sermons.index') }}">Sermons</a>
         <a href="#">Donations</a>
         <a href="#" class="logout"
            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

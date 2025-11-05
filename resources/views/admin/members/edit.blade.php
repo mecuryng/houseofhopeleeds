@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <form action="{{ route('members.update', $member) }}" method="POST">
+    <form action="{{ route('admin.members.update', $member) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -51,7 +51,7 @@
 
         <div>
             <button type="submit" style="padding:8px 12px;background:#1e293b;color:#fff;border:none;">Update Member</button>
-            <a href="{{ route('members.index') }}" style="margin-left:12px;">Cancel</a>
+            <a href="{{ route('admin.members.index') }}" style="margin-left:12px;">Cancel</a>
         </div>
     </form>
 @endsection

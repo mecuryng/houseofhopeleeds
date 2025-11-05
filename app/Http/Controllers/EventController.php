@@ -12,7 +12,7 @@ class EventController extends Controller
      */
     public function index()
 {
-    $events = Event::orderBy('event_date', 'desc')->paginate(10);
+    $events = Event::orderBy('date', 'desc')->paginate(10);
     return view('admin.events.index', compact('events'));
 }
 
@@ -23,14 +23,22 @@ public function create()
 
 public function store(Request $request)
 {
-    $request->validate([
+    $validated = $request->validate([
         'title' => 'required|max:255',
         'event_date' => 'required|date',
         'venue' => 'nullable|string|max:255',
         'description' => 'nullable|string'
     ]);
 
-    Event::create($request->all());
+    $data = $validated;
+    $data['date'] = $validated['event_date'];
+    unset($data['event_date']);
+    if (isset($validated['venue'])) {
+        $data['location'] = $validated['venue'];
+        unset($data['venue']);
+    }
+
+    Event::create($data);
     return redirect()->route('admin.events.index')->with('success', 'Event created successfully.');
 }
 
@@ -41,14 +49,22 @@ public function edit(Event $event)
 
 public function update(Request $request, Event $event)
 {
-    $request->validate([
+    $validated = $request->validate([
         'title' => 'required|max:255',
         'event_date' => 'required|date',
         'venue' => 'nullable|string|max:255',
         'description' => 'nullable|string'
     ]);
 
-    $event->update($request->all());
+    $data = $validated;
+    $data['date'] = $validated['event_date'];
+    unset($data['event_date']);
+    if (isset($validated['venue'])) {
+        $data['location'] = $validated['venue'];
+        unset($data['venue']);
+    }
+
+    $event->update($data);
     return redirect()->route('admin.events.index')->with('success', 'Event updated successfully.');
 }
 

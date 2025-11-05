@@ -29,7 +29,7 @@ class MemberController extends Controller
         ]);
 
         Member::create($request->all());
-        return redirect()->route('members.index')->with('success', 'Member added successfully.');
+        return redirect()->route('admin.members.index')->with('success', 'Member added successfully.');
     }
 
     public function edit(Member $member)
@@ -48,12 +48,12 @@ class MemberController extends Controller
         ]);
 
         $member->update($request->all());
-        return redirect()->route('members.index')->with('success', 'Member updated successfully.');
+        return redirect()->route('admin.members.index')->with('success', 'Member updated successfully.');
     }
 
     public function destroy(Member $member)
     {
         $member->delete();
-        return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
+        return redirect()->route('admin.members.index')->with('success', 'Member deleted successfully.');
     }
 }
