@@ -26,14 +26,22 @@ public function create()
 
 public function store(Request $request)
 {
-    $request->validate([
+    $validated = $request->validate([
         'title' => 'required|string|max:255',
         'content' => 'nullable|string',
         'date_preached' => 'required|date',
         'pastor_id' => 'nullable|exists:users,id'
     ]);
 
-    Sermon::create($request->all());
+    $data = $validated;
+    $data['date'] = $validated['date_preached'];
+    unset($data['date_preached']);
+    if (isset($validated['content'])) {
+        $data['description'] = $validated['content'];
+        unset($data['content']);
+    }
+
+    Sermon::create($data);
     return redirect()->route('admin.sermons.index')->with('success', 'Sermon added successfully.');
 }
 
@@ -45,14 +53,22 @@ public function edit(Sermon $sermon)
 
 public function update(Request $request, Sermon $sermon)
 {
-    $request->validate([
+    $validated = $request->validate([
         'title' => 'required|string|max:255',
         'content' => 'nullable|string',
         'date_preached' => 'required|date',
         'pastor_id' => 'nullable|exists:users,id'
     ]);
 
-    $sermon->update($request->all());
+    $data = $validated;
+    $data['date'] = $validated['date_preached'];
+    unset($data['date_preached']);
+    if (isset($validated['content'])) {
+        $data['description'] = $validated['content'];
+        unset($data['content']);
+    }
+
+    $sermon->update($data);
     return redirect()->route('admin.sermons.index')->with('success', 'Sermon updated successfully.');
 }
 
