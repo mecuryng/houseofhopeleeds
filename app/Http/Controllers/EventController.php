@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Pest\Arch\Objects\VendorObjectDescription;
 
 class EventController extends Controller
 {
@@ -26,17 +27,17 @@ public function store(Request $request)
     $validated = $request->validate([
         'title' => 'required|max:255',
         'event_date' => 'required|date',
-        'venue' => 'nullable|string|max:255',
-        'description' => 'nullable|string'
+        'location' => 'nullable|string|max:255',
+        'description' => 'nullable|string',
+        'time' => 'nullable|string|max:255'
+        
+
     ]);
 
     $data = $validated;
     $data['date'] = $validated['event_date'];
     unset($data['event_date']);
-    if (isset($validated['venue'])) {
-        $data['location'] = $validated['venue'];
-        unset($data['venue']);
-    }
+    
 
     Event::create($data);
     return redirect()->route('admin.events.index')->with('success', 'Event created successfully.');
@@ -52,17 +53,15 @@ public function update(Request $request, Event $event)
     $validated = $request->validate([
         'title' => 'required|max:255',
         'event_date' => 'required|date',
-        'venue' => 'nullable|string|max:255',
-        'description' => 'nullable|string'
+        'location' => 'nullable|string|max:255',
+        'description' => 'nullable|string',
+        'time' => 'nullable|string|max:255'
     ]);
 
     $data = $validated;
     $data['date'] = $validated['event_date'];
     unset($data['event_date']);
-    if (isset($validated['venue'])) {
-        $data['location'] = $validated['venue'];
-        unset($data['venue']);
-    }
+    
 
     $event->update($data);
     return redirect()->route('admin.events.index')->with('success', 'Event updated successfully.');

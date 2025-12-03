@@ -30,7 +30,8 @@ public function store(Request $request)
         'title' => 'required|string|max:255',
         'content' => 'nullable|string',
         'date_preached' => 'required|date',
-        'pastor_id' => 'nullable|exists:users,id'
+        'pastor_id' => 'nullable|exists:users,id',
+        'video_url' => 'nullable|url'
     ]);
 
     $data = $validated;
@@ -57,7 +58,8 @@ public function update(Request $request, Sermon $sermon)
         'title' => 'required|string|max:255',
         'content' => 'nullable|string',
         'date_preached' => 'required|date',
-        'pastor_id' => 'nullable|exists:users,id'
+        'pastor_id' => 'nullable|exists:users,id',
+        'video_url' => 'nullable|url'
     ]);
 
     $data = $validated;
