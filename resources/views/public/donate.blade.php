@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
+@section('title', 'Give') {{-- or Sermons / Give --}}
 @section('content')
+    
+
+
 <div class="container mx-auto px-4 py-8">
     <div class="max-w-3xl mx-auto text-center">
         <h1 class="text-4xl font-bold mb-6">Support House of Hope Leeds</h1>
