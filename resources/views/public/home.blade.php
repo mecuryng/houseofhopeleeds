@@ -14,11 +14,12 @@
 <div class="row">
     @forelse($events as $event)
         <div class="col-md-4 mt-3">
-            <div class="card">
+            <div class="card position-relative clickable-card">
                 <div class="card-body">
                     <h5>{{ $event->title }}</h5>
                     <p><strong>{{ \Carbon\Carbon::parse($event->event_date)->toFormattedDateString() }}</strong></p>
                     <p>{{ Str::limit($event->description, 100) }}</p>
+                    <a href="{{ route('events.show', $event->id) }}" class="stretched-link" aria-label="View event {{ $event->title }}"></a>
                 </div>
             </div>
         </div>
@@ -31,11 +32,12 @@
 <div class="row">
     @forelse($sermons as $sermon)
         <div class="col-md-4 mt-3">
-            <div class="card">
+            <div class="card position-relative clickable-card">
                 <div class="card-body">
                     <h5>{{ $sermon->title }}</h5>
                     <p>By {{ $sermon->pastor?->name ?? 'Guest Speaker' }}</p>
                     <p>{{ Str::limit($sermon->content, 100) }}</p>
+                    <a href="{{ route('sermons.show', $sermon->id) }}" class="stretched-link" aria-label="View sermon {{ $sermon->title }}"></a>
                 </div>
             </div>
         </div>

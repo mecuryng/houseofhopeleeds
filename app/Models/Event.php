@@ -16,4 +16,9 @@ class Event extends Model
     protected $casts = [
         'date' => 'date',
     ];
+
+    public function rsvps()
+    {
+        return $this->hasMany(Rsvp::class);
+    }
 }

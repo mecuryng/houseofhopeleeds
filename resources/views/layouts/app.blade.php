@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name', 'Church Website') }} - @yield('title')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'House of Hope') }} - @yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #f9fafb; color: #111827; }
@@ -11,6 +12,15 @@
         nav a { color: white; margin-right: 15px; text-decoration: none; }
         footer { background: #1e293b; color: #f8fafc; text-align: center; padding: 20px; margin-top: 40px; }
         .hero { background: url('/images/church-bg.jpg') center/cover no-repeat; color: white; text-align: center; padding: 100px 20px; }
+        /* Clickable card hover effect */
+        .clickable-card {
+            transition: box-shadow .18s ease, transform .18s ease;
+        }
+        .clickable-card:hover {
+            box-shadow: 0 10px 20px rgba(2,6,23,0.08);
+            transform: translateY(-4px);
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -42,6 +52,9 @@
             <a href="#" style="color:#facc15;">YouTube</a>
         </p>
     </footer>
+</footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
 </body>
 </html>

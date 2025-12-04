@@ -18,11 +18,12 @@
                 <p>Pastor: {{ $sermon->pastor->name }}</p>
                 @endif
             </div>
-            @if($sermon->video_url)
-            <a href="{{ $sermon->video_url }}" class="mt-4 inline-block text-blue-600 hover:text-blue-800">
-                Watch Sermon
-            </a>
-            @endif
+            <div class="mt-4">
+                <a href="{{ route('sermons.show', $sermon->id) }}" class="btn btn-sm btn-primary">Open</a>
+                @if($sermon->video_url)
+                    <a href="{{ $sermon->video_url }}" target="_blank" class="ms-2 small text-muted">(raw)</a>
+                @endif
+            </div>
         </div>
         @endforeach
     </div>

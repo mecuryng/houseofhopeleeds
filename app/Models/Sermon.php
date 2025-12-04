@@ -21,5 +21,15 @@ class Sermon extends Model
     {
         return $this->belongsTo(User::class, 'pastor_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(SermonComment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(SermonLike::class);
+    }
 }
 

@@ -6,6 +6,8 @@ use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SermonController;
+use App\Http\Controllers\RsvpController;
+use App\Http\Controllers\SermonInteractionController;
 use App\Models\Event;
 use App\Models\Sermon;
 
@@ -22,10 +24,27 @@ Route::get('/events', function () {
     return view('public.events', compact('events'));
 })->name('events');
 
+// Single event interactive page
+Route::get('/events/{event}', function (Event $event) {
+    return view('public.event', compact('event'));
+})->name('events.show');
+
+// RSVP submission for an event
+Route::post('/events/{event}/rsvp', [RsvpController::class, 'store'])->name('events.rsvp');
+
 Route::get('/sermons', function () {
     $sermons = Sermon::with('pastor')->orderBy('date', 'desc')->get();
     return view('public.sermons', compact('sermons'));
 })->name('sermons');
+
+// Single sermon interactive page (audio/video)
+Route::get('/sermons/{sermon}', function (Sermon $sermon) {
+    return view('public.sermon', compact('sermon'));
+})->name('sermons.show');
+
+// Sermon interactions: comments and likes
+Route::post('/sermons/{sermon}/comments', [SermonInteractionController::class, 'storeComment'])->name('sermons.comments.store');
+Route::post('/sermons/{sermon}/like', [SermonInteractionController::class, 'toggleLike'])->name('sermons.like.toggle');
 
 Route::view('/donate', 'public.donate')->name('donate');
 
@@ -44,6 +63,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Admin event/sermon resources will be available at /admin/events and /admin/sermons
     Route::resource('events', EventController::class);
     Route::resource('sermons', SermonController::class);
+    // Admin RSVP list
+    Route::get('rsvps', [RsvpController::class, 'index'])->name('rsvps.index');
+    Route::delete('rsvps/{rsvp}', [RsvpController::class, 'destroy'])->name('rsvps.destroy');
+    Route::get('rsvps/export', [RsvpController::class, 'export'])->name('rsvps.export');
+    Route::get('rsvps/{rsvp}', [RsvpController::class, 'show'])->name('rsvps.show');
+    
+    // Admin: Sermon comments moderation
+    Route::get('sermon-comments', [App\Http\Controllers\SermonInteractionController::class, 'indexComments'])->name('sermon-comments.index');
+    Route::post('sermon-comments/{comment}/approve', [App\Http\Controllers\SermonInteractionController::class, 'approve'])->name('sermon-comments.approve');
+    Route::delete('sermon-comments/{comment}', [App\Http\Controllers\SermonInteractionController::class, 'destroyComment'])->name('sermon-comments.destroy');
 });
 
 require __DIR__.'/auth.php';

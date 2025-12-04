@@ -18,6 +18,10 @@
                 <p>Time: {{ $event->time }}</p>
                 <p>Location: {{ $event->location }}</p>
             </div>
+            <div class="mt-4">
+                <a href="{{ route('events.show', $event->id) }}" class="btn btn-sm btn-primary">View</a>
+                <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($event->location) }}" target="_blank" class="ms-2 small text-muted">Map</a>
+            </div>
         </div>
         @endforeach
     </div>

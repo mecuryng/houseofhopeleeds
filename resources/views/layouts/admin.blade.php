@@ -50,6 +50,9 @@
         <a href="{{ route('admin.members.index') }}">Members</a>
         <a href="{{ route('admin.events.index') }}">Events</a>
         <a href="{{ route('admin.sermons.index') }}">Sermons</a>
+        <a href="{{ route('admin.sermon-comments.index') }}">Sermon Comments</a>
+        <a href="{{ route('admin.rsvps.index') }}">RSVPs</a>
+        
         <a href="#">Donations</a>
         <a href="#" class="logout"
            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
