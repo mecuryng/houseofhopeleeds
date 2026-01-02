@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'House of Hope') }} - @yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+    {{-- <style>
         body { background-color: #f9fafb; color: #111827; }
         nav { background-color: #1e293b; }
         nav a { color: white; margin-right: 15px; text-decoration: none; }
@@ -21,40 +21,23 @@
             transform: translateY(-4px);
             text-decoration: none;
         }
-    </style>
+    </style> --}}
+    @vite(['resources/css/app.css', 'resources/css/church.css'])
 </head>
 <body>
 
-    {{-- Header Navigation --}}
-    <nav class="p-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <h3 class="text-white">Church Website</h3>
-            <div>
-                <a href="{{ url('/') }}">Home</a>
-                <a href="{{ url('/about') }}">About</a>
-                <a href="{{ url('/events') }}">Events</a>
-                <a href="{{ url('/sermons') }}">Sermons</a>
-                <a href="{{ url('/donate') }}">Give</a>
-            </div>
-        </div>
-    </nav>
+    @include('partials.nav')
 
     {{-- Main Page Content --}}
-    <main class="container my-5">
+    <main>
         @yield('content')
     </main>
 
     {{-- Footer --}}
-    <footer>
-        <p>&copy; {{ date('Y') }} {{ config('app.name', 'Church Website') }}. All rights reserved.</p>
-        <p>Follow us on 
-            <a href="#" style="color:#facc15;">Facebook</a> | 
-            <a href="#" style="color:#facc15;">YouTube</a>
-        </p>
-    </footer>
-</footer>
+    @include('partials.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @vite([ 'resources/js/app.js', 'resources/js/church.js'])
     @stack('scripts')
 </body>
 </html>
