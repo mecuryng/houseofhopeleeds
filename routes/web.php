@@ -8,6 +8,8 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\SermonController;
 use App\Http\Controllers\RsvpController;
 use App\Http\Controllers\SermonInteractionController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PrayerRequestController;
 use App\Models\Event;
 use App\Models\Sermon;
 
@@ -19,6 +21,9 @@ Route::get('/', function () {
 })->name('home');
 
 Route::view('/about', 'public.about')->name('about');
+Route::view('/ministries', 'public.ministries')->name('ministries');
+Route::view('/contact', 'public.contact')->name('contact');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 Route::get('/events', function () {
     $events = Event::orderBy('date')->get();
     return view('public.events', compact('events'));
@@ -45,6 +50,14 @@ Route::get('/sermons/{sermon}', function (Sermon $sermon) {
 // Sermon interactions: comments and likes
 Route::post('/sermons/{sermon}/comments', [SermonInteractionController::class, 'storeComment'])->name('sermons.comments.store');
 Route::post('/sermons/{sermon}/like', [SermonInteractionController::class, 'toggleLike'])->name('sermons.like.toggle');
+
+Route::get('/staff', function () {
+    $staff = \App\Models\User::where('role', '!=', 'member')->orderBy('name')->get();
+    return view('public.staff', compact('staff'));
+})->name('staff');
+
+Route::get('/prayer', [PrayerRequestController::class, 'index'])->name('prayer');
+Route::post('/prayer', [PrayerRequestController::class, 'store'])->name('prayer.store');
 
 Route::view('/donate', 'public.donate')->name('donate');
 
@@ -73,6 +86,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('sermon-comments', [App\Http\Controllers\SermonInteractionController::class, 'indexComments'])->name('sermon-comments.index');
     Route::post('sermon-comments/{comment}/approve', [App\Http\Controllers\SermonInteractionController::class, 'approve'])->name('sermon-comments.approve');
     Route::delete('sermon-comments/{comment}', [App\Http\Controllers\SermonInteractionController::class, 'destroyComment'])->name('sermon-comments.destroy');
+
+    // Admin: Prayer requests
+    Route::get('prayer-requests', [PrayerRequestController::class, 'adminIndex'])->name('prayer-requests.index');
 });
 
 require __DIR__.'/auth.php';

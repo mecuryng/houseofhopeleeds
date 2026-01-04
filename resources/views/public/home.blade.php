@@ -10,9 +10,9 @@
             <div class="hero-content">
                 <h1 class="display-4 fw-bold mb-3">Welcome to House of Hope Church Leeds</h1>
                 <p class="lead mb-4">A place where you can belong, believe, and become all that God created you to be.</p>
-                <div class="d-flex flex-wrap gap-3">
+                <div class="d-flex flex-wrap gap-5 justify-content-center">
                     <a href="{{ url('/donate') }}" class="btn btn-primary btn-lg px-4">
-                        <i class="fas fa-calendar me-2"></i> Join Us This Saturday
+                        <i class="fas fa-calendar me-2"></i> Support Our Work
                     </a>
                     <a href="{{ url('/about') }}" class="btn btn-outline-light btn-lg px-4">
                         <i class="fas fa-info-circle me-2"></i> Learn More
@@ -184,7 +184,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="text-center mt-5">
                 <div class="bg-primary text-white p-4 rounded">
                     <div class="d-flex align-items-center justify-content-center">
@@ -196,7 +195,7 @@
                             @forelse($sermons as $sermon)
                                 
                                 
-                                <a href="{{ route('sermons.show', $sermon->id) }}" class="stretched-link" aria-label="View sermon {{ $sermon->title }}"><p class = "mb-0">{{ $sermon->title }}</p></a>         
+                                <a href="{{ route('sermons.show', $sermon->id) }}"  aria-label="View sermon {{ $sermon->title }}"><p class = "mb-0">{{ $sermon->title }}</p></a>         
                             @empty
                                 <p>No sermons available.</p>
                             @endforelse
@@ -205,9 +204,13 @@
                     </div>
                 </div>
             </div>
+        
+            
         </div>
     </section>
-
+    
+        
+    
      <!-- Ministries Section -->
     <section class="py-5 bg-light" id="ministries">
         <div class="container">
@@ -474,7 +477,7 @@
                         <i class="fas fa-envelope fs-4 me-3 mt-1"></i>
                         <div>
                             <h5 class="h6">Email</h5>
-                            <p class="mb-0">info@gracecommunity.org</p>
+                            <p class="mb-0">info@houseofhopeleeds.org</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-start mb-4">
@@ -496,23 +499,9 @@
                 <div class="col-lg-6">
                     <div class="bg-white bg-opacity-10 p-4 rounded">
                         <h3 class="mb-4">Send us a Message</h3>
-                        <form>
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Your Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="John Smith">
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email" placeholder="john@example.com">
-                            </div>
-                            <div class="mb-3">
-                                <label for="message" class="form-label">Message</label>
-                                <textarea class="form-control" id="message" rows="4" placeholder="How can we help you?"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-light w-100">
-                                <i class="fas fa-paper-plane me-2"></i> Send Message
-                            </button>
-                        </form>
+                        <a href="{{ url('/contact') }}" class="btn btn-light btn-lg">
+                    <i class="fas fa-envelope me-2"></i> Contact Us
+                </a>
                     </div>
                 </div>
             </div>

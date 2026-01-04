@@ -25,7 +25,7 @@
             @forelse ($sermons as $sermon)
                 <tr style="border-bottom:1px solid #e5e7eb;transition:background 0.2s;" onmouseover="this.style.background='#f8f9fa';" onmouseout="this.style.background='transparent';">
                     <td style="padding:1rem;border-bottom:1px solid #e5e7eb;font-family:'Nunito Sans',sans-serif;color:#1A1A1A;">{{ $sermon->title }}</td>
-                    <td style="padding:1rem;border-bottom:1px solid #e5e7eb;font-family:'Nunito Sans',sans-serif;color:#1A1A1A;">{{ $sermon->pastor->name }}</td>
+                    <td style="padding:1rem;border-bottom:1px solid #e5e7eb;font-family:'Nunito Sans',sans-serif;color:#1A1A1A;">{{ $sermon->pastor ? $sermon->pastor->name : 'N/A' }}</td>
                     <td style="padding:1rem;border-bottom:1px solid #e5e7eb;font-family:'Nunito Sans',sans-serif;color:#1A1A1A;">{{ $sermon->date->format('M d, Y') }}</td>
                     <td style="padding:1rem;border-bottom:1px solid #e5e7eb;">
                         <a href="{{ route('admin.sermons.edit', $sermon) }}" style="color:#3A6EA5;text-decoration:none;font-family:'Nunito Sans',sans-serif;font-weight:500;margin-right:1rem;transition:color 0.2s;" onmouseover="this.style.color='#DAA520';" onmouseout="this.style.color='#3A6EA5';">Edit</a>

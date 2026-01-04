@@ -8,9 +8,9 @@
             <div class="hero-content">
                 <h1 class="display-4 fw-bold mb-3">Welcome to Grace Community Church Leeds</h1>
                 <p class="lead mb-4">A place where you can belong, believe, and become all that God created you to be.</p>
-                <div class="d-flex flex-wrap gap-3">
+                <div class="d-flex flex-wrap gap-5 justify-content-center">
                     <a href="{{ url('/donate') }}" class="btn btn-primary btn-lg px-4">
-                        <i class="fas fa-calendar me-2"></i> Join Us This Sunday
+                        <i class="fas fa-calendar me-2"></i> Support Our Work
                     </a>
                     <a href="{{ url('/about') }}" class="btn btn-outline-light btn-lg px-4">
                         <i class="fas fa-info-circle me-2"></i> Learn More
@@ -20,34 +20,49 @@
         </div>
     </section>
 
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-8 text-center">Our Sermons</h1>
-
-    @if(count($sermons ?? []) > 0)
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @foreach($sermons as $sermon)
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <h3 class="text-xl font-semibold mb-2">{{ $sermon->title }}</h3>
-            <p class="text-gray-600 mb-4">{{ $sermon->description }}</p>
-            <div class="text-sm text-gray-500">
-                <p>Date: {{ $sermon->date->format('F j, Y') }}</p>
-                @if($sermon->pastor)
-                <p>Pastor: {{ $sermon->pastor->name }}</p>
-                @endif
-            </div>
-            <div class="mt-4">
-                <a href="{{ route('sermons.show', $sermon->id) }}" class="btn btn-sm btn-primary">Open</a>
-                @if($sermon->video_url)
-                    <a href="{{ $sermon->video_url }}" target="_blank" class="ms-2 small text-muted">(raw)</a>
-                @endif
-            </div>
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Our Sermons</h2>
+            <p class="text-muted">Experience inspiring messages and biblical teaching</p>
         </div>
-        @endforeach
+
+        @if(count($sermons ?? []) > 0)
+        <div class="row g-4">
+            @foreach($sermons as $sermon)
+            <div class="col-md-6 col-lg-4">
+                <div class="card sermon-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="fas fa-book-open text-primary me-2"></i>
+                            <span class="text-muted small">{{ $sermon->date->format('F j, Y') }}</span>
+                        </div>
+                        <h4 class="card-title">{{ $sermon->title }}</h4>
+                        @if($sermon->pastor)
+                        <div class="d-flex align-items-center text-muted mb-3">
+                            <i class="fas fa-user me-2"></i>
+                            <span>{{ $sermon->pastor->name }}</span>
+                        </div>
+                        @endif
+                        <p class="card-text">
+                            {{ Str::limit($sermon->description, 100) }}
+                        </p>
+                        <div class="mt-4">
+                            <a href="{{ route('sermons.show', $sermon->id) }}" class="btn btn-primary btn-sm">Listen Now</a>
+                            @if($sermon->video_url)
+                                <a href="{{ $sermon->video_url }}" target="_blank" class="ms-2 small text-muted">(video)</a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        @else
+        <div class="text-center">
+            <p>No sermons available at the moment. Please check back later.</p>
+        </div>
+        @endif
     </div>
-    @else
-    <div class="text-center text-gray-600">
-        <p>No sermons available at the moment. Please check back later.</p>
-    </div>
-    @endif
-</div>
+</section>
 @endsection
