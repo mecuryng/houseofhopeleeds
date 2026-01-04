@@ -36,7 +36,7 @@
             <select name="pastor_id" style="padding:8px;">
                 <option value="">Select a pastor</option>
                 @foreach ($pastors as $pastor)
-                    <option value="{{ $pastor->id }}" {{ old('pastor_id') == $pastor->id ? 'selected' : '' }}>
+                    <option value="{{ $pastor->id }}" {{ old('pastor_id', $selectedPastorId ?? '') == $pastor->id ? 'selected' : '' }}>
                         {{ $pastor->name }}
                     </option>
                 @endforeach

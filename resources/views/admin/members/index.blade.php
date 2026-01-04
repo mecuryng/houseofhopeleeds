@@ -1,46 +1,57 @@
 @extends('layouts.admin')
 
+@section('title', 'Members Management')
 @section('content')
-    <div style="display:flex;justify-content:space-between;align-items:center;">
-        <h1>Members</h1>
-        <a href="{{ route('admin.members.create') }}" style="padding:8px 12px;background:#1e293b;color:#fff;border:none;text-decoration:none;">Add Member</a>
+    <div class="admin-header">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+            <h1>Members</h1>
+            <a href="{{ route('admin.members.create') }}" class="admin-btn-primary">Add Member</a>
+        </div>
     </div>
 
     @if (session('success'))
-        <div style="padding:10px;background:#dcfce7;border:1px solid #bbf7d0;margin-bottom:16px;color:#166534;">
+        <div class="admin-alert admin-alert-success">
             {{ session('success') }}
         </div>
     @endif
 
-    <table style="width:100%;border-collapse:collapse;">
-        <thead>
-            <tr style="background:#f3f4f6;">
-                <th style="padding:12px;text-align:left;">Name</th>
-                <th style="padding:12px;text-align:left;">Email</th>
-                <th style="padding:12px;text-align:left;">Phone</th>
-                <th style="padding:12px;text-align:left;">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($members as $member)
+    <div class="admin-table">
+        <table style="width:100%;border-collapse:collapse;">
+            <thead>
                 <tr>
-                    <td style="padding:12px;border-bottom:1px solid #e5e7eb;">{{ $member->name }}</td>
-                    <td style="padding:12px;border-bottom:1px solid #e5e7eb;">{{ $member->email }}</td>
-                    <td style="padding:12px;border-bottom:1px solid #e5e7eb;">{{ $member->phone }}</td>
-                    <td style="padding:12px;border-bottom:1px solid #e5e7eb;">
-                        <a href="{{ route('admin.members.edit', $member) }}" style="color:#3b82f6;text-decoration:none;">Edit</a>
-                        <form action="{{ route('admin.members.destroy', $member) }}" method="POST" style="display:inline;margin-left:12px;" onsubmit="return confirm('Are you sure?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" style="color:#ef4444;background:none;border:none;cursor:pointer;">Delete</button>
-                        </form>
-                    </td>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
                 </tr>
-            @empty
-                <tr>
-                    <td colspan="4" style="padding:12px;text-align:center;">No members found.</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse ($members as $member)
+                    <tr>
+                        <td>{{ $member->name }}</td>
+                        <td>{{ $member->email }}</td>
+                        <td>{{ $member->phone }}</td>
+                        <td>
+                            <a href="{{ route('admin.members.edit', $member) }}" style="color:#3b82f6;text-decoration:none;margin-right:1rem;">Edit</a>
+                            <form action="{{ route('admin.members.destroy', $member) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="admin-btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4" style="padding:2rem;text-align:center;color:#6B7280;">No members found.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+
+    @if($members->hasPages())
+        <div style="margin-top:2rem;">
+            {{ $members->links() }}
+        </div>
+    @endif
 @endsection

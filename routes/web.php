@@ -10,6 +10,8 @@ use App\Http\Controllers\RsvpController;
 use App\Http\Controllers\SermonInteractionController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PrayerRequestController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\PastorController;
 use App\Models\Event;
 use App\Models\Sermon;
 
@@ -63,16 +65,27 @@ Route::view('/donate', 'public.donate')->name('donate');
 
 // Auth-only routes
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('profile', 'profile')->name('profile');
+});
+
+// Pastor-only routes
+Route::middleware(['auth', 'role:pastor'])->group(function () {
+    Route::get('/pastor', [PastorController::class, 'dashboard'])->name('pastor');
+
+    // Sermon management for pastors
+    Route::prefix('pastor')->name('pastor.')->group(function() {
+        Route::resource('sermons', PastorController::class)->parameters([
+            'sermons' => 'sermon'
+        ]);
+    });
 });
 
 // Admin-only routes (under /admin prefix, named admin.*)
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-    Route::get('/pastor', [AdminController::class, 'pastor'])->middleware('role:pastor')->name('pastor');
 
     Route::resource('members', MemberController::class);
+    Route::resource('users', UserController::class);
     // Admin event/sermon resources will be available at /admin/events and /admin/sermons
     Route::resource('events', EventController::class);
     Route::resource('sermons', SermonController::class);
@@ -89,6 +102,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
     // Admin: Prayer requests
     Route::get('prayer-requests', [PrayerRequestController::class, 'adminIndex'])->name('prayer-requests.index');
+    Route::get('prayer-requests/export-csv', [PrayerRequestController::class, 'exportCsv'])->name('prayer-requests.export-csv');
+    Route::get('prayer-requests/export-pdf', [PrayerRequestController::class, 'exportPdf'])->name('prayer-requests.export-pdf');
 });
 
 require __DIR__.'/auth.php';

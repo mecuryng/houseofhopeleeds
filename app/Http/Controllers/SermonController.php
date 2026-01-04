@@ -12,16 +12,23 @@ class SermonController extends Controller
      * Display a listing of the resource.
      */
 
-public function index()
+public function index(Request $request)
 {
-    $sermons = Sermon::with('pastor')->latest()->paginate(10);
+    $query = Sermon::with('pastor');
+
+    if ($request->filled('pastor_filter')) {
+        $query->where('pastor_id', $request->pastor_filter);
+    }
+
+    $sermons = $query->latest()->paginate(10)->withQueryString();
     return view('admin.sermons.index', compact('sermons'));
 }
 
-public function create()
+public function create(Request $request)
 {
     $pastors = User::where('role', 'pastor')->get();
-    return view('admin.sermons.create', compact('pastors'));
+    $selectedPastorId = $request->query('pastor_id');
+    return view('admin.sermons.create', compact('pastors', 'selectedPastorId'));
 }
 
 public function store(Request $request)

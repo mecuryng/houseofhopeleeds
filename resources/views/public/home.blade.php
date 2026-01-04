@@ -291,7 +291,7 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-2">
                                 <i class="fas fa-calendar text-primary me-2"></i>
-                                <span class="text-muted small">{{ \Carbon\Carbon::parse($event->event_date)->toFormattedDateString() }}</span>
+                                <span class="text-muted small">{{ \Carbon\Carbon::parse($event->date)->toFormattedDateString() }}</span>
                             </div>
                             <h4 class="card-title">{{ $event->title }}</h4>
                             <div class="d-flex align-items-center text-muted mb-3">
@@ -299,7 +299,7 @@
                                 <span>{{ $event->event_time }}</span>
                             </div>
                             <p class="card-text">
-                                S{{ Str::limit($event->description, 100) }}
+                                {{ Str::limit($event->description, 100) }}
                             </p>
                             <a href="{{ route('events.show', $event->id) }}" class="text-primary fw-medium">
                                 Learn More <i class="fas fa-chevron-right ms-1"></i>

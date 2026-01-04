@@ -1,78 +1,81 @@
 @extends('layouts.admin')
 
+@section('title', 'Event RSVPs')
 @section('content')
-<x-page-title>RSVPs</x-page-title>
-
-<div class="card p-3">
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    {{-- Filters + Export --}}
-    <div class="mb-3 d-flex align-items-center gap-2">
-        <form method="GET" class="d-flex gap-2" style="flex-wrap:wrap;">
-            <input type="text" name="q" placeholder="Search name or email" value="{{ request('q') }}" class="form-control form-control-sm" />
-            <select name="event_id" class="form-select form-select-sm">
-                <option value="">All events</option>
-                @foreach(App\Models\Event::orderBy('date','desc')->pluck('title','id') as $id => $title)
-                    <option value="{{ $id }}" {{ request('event_id') == $id ? 'selected' : '' }}>{{ $title }}</option>
-                @endforeach
-            </select>
-            <input type="date" name="from" value="{{ request('from') }}" class="form-control form-control-sm" />
-            <input type="date" name="to" value="{{ request('to') }}" class="form-control form-control-sm" />
-            <button class="btn btn-sm btn-primary" type="submit">Filter</button>
-        </form>
-
-        <div style="margin-left:auto;">
+    <div class="admin-header">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+            <h1>Event RSVPs</h1>
             @php $qs = http_build_query(request()->all()); @endphp
-            <a href="{{ route('admin.rsvps.export') }}{{ $qs ? '?'.$qs : '' }}" class="btn btn-sm btn-outline-secondary">Export CSV</a>
+            <a href="{{ route('admin.rsvps.export') }}{{ $qs ? '?'.$qs : '' }}" class="admin-btn-primary">Export CSV</a>
         </div>
     </div>
 
-    <div class="table-responsive">
-        <table class="table table-striped">
+    @if(session('success'))
+        <div class="admin-alert admin-alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <form method="GET" style="margin-bottom:2rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+        <input type="text" name="q" placeholder="Search name or email" value="{{ request('q') }}" style="padding:0.5rem;border:1px solid #d1d5db;border-radius:6px;min-width:200px;" />
+        <select name="event_id" style="padding:0.5rem;border:1px solid #d1d5db;border-radius:6px;min-width:150px;">
+            <option value="">All events</option>
+            @foreach(App\Models\Event::orderBy('date','desc')->pluck('title','id') as $id => $title)
+                <option value="{{ $id }}" {{ request('event_id') == $id ? 'selected' : '' }}>{{ $title }}</option>
+            @endforeach
+        </select>
+        <input type="date" name="from" value="{{ request('from') }}" style="padding:0.5rem;border:1px solid #d1d5db;border-radius:6px;" />
+        <input type="date" name="to" value="{{ request('to') }}" style="padding:0.5rem;border:1px solid #d1d5db;border-radius:6px;" />
+        <button class="admin-btn-primary" type="submit">Filter</button>
+    </form>
+
+    <div class="admin-table">
+        <table style="width:100%;border-collapse:collapse;">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Event</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Guests</th>
                     <th>Message</th>
                     <th>Date</th>
-                    <th></th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($rsvps as $rsvp)
+                @forelse($rsvps as $rsvp)
                 <tr>
                     <td>{{ $rsvp->id }}</td>
-                    <td><a href="{{ route('events.show', $rsvp->event_id) }}">{{ $rsvp->event->title ?? '—' }}</a></td>
+                    <td><a href="{{ route('events.show', $rsvp->event_id) }}" style="color:#3b82f6;text-decoration:none;">{{ $rsvp->event->title ?? '—' }}</a></td>
                     <td>{{ $rsvp->name }}</td>
                     <td>{{ $rsvp->email }}</td>
                     <td>{{ $rsvp->guests_count }}</td>
-                    <td>{{ \Illuminate\Support\Str::limit($rsvp->message, 80) }}</td>
-                    <td>{{ $rsvp->created_at->format('Y-m-d H:i') }}</td>
+                    <td style="max-width:250px;word-wrap:break-word;">{{ \Illuminate\Support\Str::limit($rsvp->message, 80) }}</td>
+                    <td>{{ $rsvp->created_at->format('M d, Y H:i') }}</td>
                     <td>
-                            <div class="d-flex gap-1">
-                                <button class="btn btn-sm btn-outline-secondary" data-rsvp-id="{{ $rsvp->id }}" onclick="window.showRsvp(event)">View</button>
-                                <form action="{{ route('admin.rsvps.destroy', $rsvp->id) }}" method="POST" onsubmit="return confirm('Delete this RSVP?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                            </div>
+                        <button class="admin-btn-primary" style="font-size:0.875rem;background:#6b7280;" data-rsvp-id="{{ $rsvp->id }}" onclick="window.showRsvp(event)">View</button>
+                        <form action="{{ route('admin.rsvps.destroy', $rsvp->id) }}" method="POST" style="display:inline;margin-left:0.5rem;" onsubmit="return confirm('Delete this RSVP?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="admin-btn-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="8" style="padding:2rem;text-align:center;color:#6B7280;">No RSVPs found.</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
 
-    <div class="mt-3">
-        {{ $rsvps->links() }}
-    </div>
-</div>
+    @if($rsvps->hasPages())
+        <div style="margin-top:2rem;">
+            {{ $rsvps->links() }}
+        </div>
+    @endif
 @endsection
 
 @push('scripts')
