@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-4 mb-4 mb-lg-0">
                 <div class="d-flex align-items-center mb-3">
-                    <img src="/logo.png " alt="House of Hope" class="me-2" style="height:40px; width:auto;">
+                   <img src="{{ asset('Logo.png') }}" alt="House of Hope" class="logo" style="height:32px; width:auto;">
                     <h4 class="h5 mb-0">House of Hope Church Leeds</h4>
                 </div>
                 <p class="">

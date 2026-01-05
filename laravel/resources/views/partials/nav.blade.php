@@ -1,8 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-            <img src="/logo.png " alt="House of Hope" class="me-2" style="height:32px; width:auto;">
+            <img src="{{ asset('Logo.png') }}" alt="House of Hope" class="logo" style="height:32px; width:auto;">
             House of Hope Church Leeds
+            
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
