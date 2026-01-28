@@ -192,6 +192,37 @@ body {
 .impact-icon { width:45px; height:45px; display:flex; align-items:center; justify-content:center; border-radius:50%; margin-right:15px; font-size:1.1rem; }
 .step-number { width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:var(--primary); color:white; font-weight:bold; font-size:1.2rem; margin-right:15px; }
 
+/* Accordion styling to ensure body text remains visible */
+.accordion-button {
+    color: #333;
+    font-weight: 500;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: rgba(30, 64, 175, 0.08);
+    color: #1e40af;
+}
+
+.accordion-body {
+    display: block !important;
+    visibility: visible !important;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Ensure collapsing animation works smoothly */
+.accordion-collapse {
+    overflow: visible !important;
+}
+
+.accordion-collapse.collapse.show {
+    display: block !important;
+}
+
+.accordion-collapse.collapse:not(.show) {
+    display: none;
+}
+
 /* small helpers */
 .bg-gradient-primary { background: linear-gradient(90deg, var(--primary), #2563eb); }
 

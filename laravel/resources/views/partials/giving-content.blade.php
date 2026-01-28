@@ -488,12 +488,12 @@
                 <div class="accordion" id="faqAccordion">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
                                 <i class="fas fa-question-circle text-primary me-2"></i>
                                 Is my online giving secure?
                             </button>
                         </h2>
-                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
                                 Yes! We use industry-standard 256-bit SSL encryption to protect your personal and financial information. Our payment processor is PCI Level 1 compliant, the highest level of security certification available.
                             </div>
@@ -501,7 +501,7 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
                                 <i class="fas fa-question-circle text-primary me-2"></i>
                                 Will I receive a tax receipt?
                             </button>
@@ -514,7 +514,7 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
                                 <i class="fas fa-question-circle text-primary me-2"></i>
                                 Can I set up recurring giving?
                             </button>
@@ -527,7 +527,7 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
                                 <i class="fas fa-question-circle text-primary me-2"></i>
                                 How are giving decisions made?
                             </button>
