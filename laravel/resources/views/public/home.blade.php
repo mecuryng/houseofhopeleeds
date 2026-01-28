@@ -9,7 +9,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="display-4 fw-bold mb-3">Welcome to House of Hope Church Leeds</h1>
-                <p class="lead mb-4">A place where you can belong, believe, and become all that God created you to be.</p>
+                <p class="lead mb-4">A place to belong, grow, and shine.</p>
                 <div class="d-flex flex-wrap gap-5 justify-content-center">
                     <a href="{{ url('/donate') }}" class="btn btn-primary btn-lg px-4">
                         <i class="fas fa-calendar me-2"></i> Support Our Work
@@ -28,7 +28,8 @@
             <div class="row text-center">
                 <div class="col-md-4">
                     <i class="fas fa-map-marker-alt me-2"></i>
-                    <span>123 Faith Street, Hope City, HC 12345</span>
+                    <span>Curtis House Business Centre Avenue
+Leeds LS9 9L F</span>
                 </div>
                 <div class="col-md-4">
                     <i class="fas fa-clock me-2"></i>
@@ -36,7 +37,7 @@
                 </div>
                 <div class="col-md-4">
                     <i class="fas fa-phone me-2"></i>
-                    <span>(555) 123-4567</span>
+                    <span>+447359459090</span>
                 </div>
             </div>
         </div>
@@ -65,10 +66,11 @@
                 <div class="col-lg-6">
                     <h3 class="h2 mb-4">Who We Are</h3>
                     <p class="lead mb-4">
-                        Grace Community Church was founded in 1985 with a simple vision: to be a place where people can experience God's love and grow in their faith journey.
+                        House of Hope is a place to belong, grow, and shine. Since 2024, we have been teaching the Bible down to the cross-root level, meeting in homes and small groups, and helping people understand and live God’s Word. We are committed to evangelism, sharing hope with our communities, and embracing the prophetic ministry, listening for God’s guidance to encourage and strengthen those around us. Our vision is to be a welcoming light, pointing to Christ, and carrying hope into homes, neighbourhoods, and future generations.
+
                     </p>
                     <p class="mb-4">
-                        Today, we are a diverse community of believers from all walks of life, united by our love for Christ and commitment to serving others.
+                        Our vision is to be a welcoming light, pointing to Christ, and carrying hope into homes, neighbourhoods, and future generations.
                     </p>
 
                     <div class="row g-3">

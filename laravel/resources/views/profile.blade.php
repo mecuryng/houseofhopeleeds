@@ -12,7 +12,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="display-4 fw-bold mb-3">Welcome to Grace Community Church Leeds</h1>
-                <p class="lead mb-4">A place where you can belong, believe, and become all that God created you to be.</p>
+                <p class="lead mb-4">A place to belong, grow, and shine.</p>
                 <div class="d-flex flex-wrap gap-3">
                     <a href="{{ url('/donate') }}" class="btn btn-primary btn-lg px-4">
                         <i class="fas fa-calendar me-2"></i> Join Us This Sunday

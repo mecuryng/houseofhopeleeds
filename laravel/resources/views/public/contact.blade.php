@@ -28,7 +28,8 @@
         <div class="row text-center">
             <div class="col-md-3">
                 <i class="fas fa-map-marker-alt me-2"></i>
-                <span>123 Faith Street, Hope City, HC 12345</span>
+                <span>Curtis House Business Centre Avenue
+Leeds LS9 9L F</span>
             </div>
             <div class="col-md-3">
                 <i class="fas fa-clock me-2"></i>
@@ -36,7 +37,7 @@
             </div>
             <div class="col-md-3">
                 <i class="fas fa-phone me-2"></i>
-                <span>(555) 123-4567</span>
+                <span>+447359459090</span>
             </div>
             <div class="col-md-3">
                 <i class="fas fa-envelope me-2"></i>

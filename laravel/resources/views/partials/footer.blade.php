@@ -7,7 +7,7 @@
                     <h4 class="h5 mb-0">House of Hope Church Leeds</h4>
                 </div>
                 <p class="">
-                    A place where you can belong, believe, and become all that God created you to be.
+                    A place to belong, grow, and shine.
                 </p>
                 <p> </p>
                 </br>
