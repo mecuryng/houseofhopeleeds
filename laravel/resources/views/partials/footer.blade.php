@@ -62,7 +62,7 @@
             <p class=" small">
                     &copy;  {{ date('Y') }} House of Hope Church Leeds. All rights reserved.
                 </p>
-            House of Hope Church Leeds is a registered 501(c)(3) non-profit organization.
+            House of Hope Church Leeds is a registered non-profit organization.
         </div>
     </div>
 </footer>

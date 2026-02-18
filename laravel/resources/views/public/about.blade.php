@@ -7,7 +7,7 @@
     <section class="hero" style="background-image:url('/images/church-bg.png');">
         <div class="container">
             <div class="hero-content">
-                <h1 class="display-4 fw-bold mb-3">Welcome to Grace Community Church Leeds</h1>
+                <h1 class="display-4 fw-bold mb-3">Welcome to House of Hope Church Leeds</h1>
                 <p class="lead mb-4">A place to belong, grow, and shine.</p>
                 <div class="d-flex flex-wrap gap-5 justify-content-center">
                     <a href="{{ url('/donate') }}" class="btn btn-primary btn-lg px-4">

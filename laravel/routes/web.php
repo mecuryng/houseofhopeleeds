@@ -12,6 +12,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PrayerRequestController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PastorController;
+use App\Http\Controllers\DonationController;
 use App\Models\Event;
 use App\Models\Sermon;
 
@@ -63,6 +64,14 @@ Route::post('/prayer', [PrayerRequestController::class, 'store'])->name('prayer.
 
 Route::view('/donate', 'public.donate')->name('donate');
 
+// Payment endpoints: create provider sessions and webhooks
+Route::post('/donate/stripe/create', [DonationController::class, 'createStripeSession'])->name('donate.stripe.create');
+Route::post('/webhooks/stripe', [DonationController::class, 'stripeWebhook'])->name('webhooks.stripe');
+Route::post('/donate/paypal/create', [DonationController::class, 'createPaypalOrder'])->name('donate.paypal.create');
+Route::post('/webhooks/paypal', [DonationController::class, 'paypalWebhook'])->name('webhooks.paypal');
+Route::get('/donate/success', [DonationController::class, 'success'])->name('donate.success');
+Route::get('/donate/cancel', [DonationController::class, 'cancel'])->name('donate.cancel');
+
 // Auth-only routes
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('profile', 'profile')->name('profile');
@@ -89,6 +98,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Admin event/sermon resources will be available at /admin/events and /admin/sermons
     Route::resource('events', EventController::class);
     Route::resource('sermons', SermonController::class);
+    // Admin donations
+    Route::get('donations', [App\Http\Controllers\Admin\DonationController::class, 'index'])->name('donations.index');
+    Route::get('donations/{donation}', [App\Http\Controllers\Admin\DonationController::class, 'show'])->name('donations.show');
+    Route::delete('donations/{donation}', [App\Http\Controllers\Admin\DonationController::class, 'destroy'])->name('donations.destroy');
+    Route::get('donations/export', [App\Http\Controllers\Admin\DonationController::class, 'export'])->name('donations.export');
     // Admin RSVP list
     Route::get('rsvps', [RsvpController::class, 'index'])->name('rsvps.index');
     Route::delete('rsvps/{rsvp}', [RsvpController::class, 'destroy'])->name('rsvps.destroy');

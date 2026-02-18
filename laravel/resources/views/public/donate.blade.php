@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Give - Grace Community Church')
+@section('title','Give - House of Hope Church')
 
 @section('content')
     <!-- Hero Section -->
@@ -41,7 +41,10 @@
         </div>
     </div>
 
-    <!-- (Remaining giving page content) -->
+    <!-- Donation form -->
+    
+
+    <!-- Include giving-content partial (FAQ, impact, etc.) -->
     @include('partials.giving-content')
 
 @endsection

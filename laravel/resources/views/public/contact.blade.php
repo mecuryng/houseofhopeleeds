@@ -28,8 +28,7 @@
         <div class="row text-center">
             <div class="col-md-3">
                 <i class="fas fa-map-marker-alt me-2"></i>
-                <span>Curtis House Business Centre Avenue
-Leeds LS9 9L F</span>
+                <span>Swarcliffe Community Centre, 65 Stanks Gardens, Leeds LS14 5LS</span>
             </div>
             <div class="col-md-3">
                 <i class="fas fa-clock me-2"></i>

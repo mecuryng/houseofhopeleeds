@@ -28,8 +28,7 @@
             <div class="row text-center">
                 <div class="col-md-4">
                     <i class="fas fa-map-marker-alt me-2"></i>
-                    <span>Curtis House Business Centre Avenue
-Leeds LS9 9L F</span>
+                    <span>Swarcliffe Community Centre, 65 Stanks Gardens, Leeds LS14 5LS</span>
                 </div>
                 <div class="col-md-4">
                     <i class="fas fa-clock me-2"></i>
@@ -465,14 +464,14 @@ Leeds LS9 9L F</span>
                         <i class="fas fa-map-marker-alt fs-4 me-3 mt-1"></i>
                         <div>
                             <h5 class="h6">Address</h5>
-                            <p class="mb-0">123 Faith Street, Hope City, HC 12345</p>
+                            <p class="mb-0">Swarcliffe Community Centre<br>65 Stanks Gardens, Leeds LS14 5LS</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-start mb-3">
                         <i class="fas fa-phone fs-4 me-3 mt-1"></i>
                         <div>
                             <h5 class="h6">Phone</h5>
-                            <p class="mb-0">(555) 123-4567</p>
+                            <p class="mb-0">+447359459090</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-start mb-3">
@@ -486,7 +485,7 @@ Leeds LS9 9L F</span>
                         <i class="fas fa-clock fs-4 me-3 mt-1"></i>
                         <div>
                             <h5 class="h6">Office Hours</h5>
-                            <p class="mb-0">Monday-Friday: 9am-5pm</p>
+                            <p class="mb-0"></p>
                         </div>
                     </div>
                     
