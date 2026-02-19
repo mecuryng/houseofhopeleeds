@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-md-4">
                     <i class="fas fa-clock me-2"></i>
-                    <span>Saturday Services: 9:00 AM </span>
+                    <span>Saturday Services: 7:45 AM </span>
                 </div>
                 <div class="col-md-4">
                     <i class="fas fa-phone me-2"></i>
@@ -141,16 +141,16 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fas fa-sun text-warning fs-2 me-3"></i>
-                                <h3 class="h4 mb-0">Sunday Services</h3>
+                                <h3 class="h4 mb-0">Saturday Services</h3>
                             </div>
                             <ul class="list-unstyled">
                                 <li class="d-flex align-items-center mb-2">
                                     <i class="fas fa-clock text-muted me-2"></i>
-                                    <span><strong>9:00 AM</strong> - Traditional Worship</span>
+                                    <span><strong>7:45AM</strong> - Traditional Worship</span>
                                 </li>
                                 <li class="d-flex align-items-center mb-2">
                                     <i class="fas fa-clock text-muted me-2"></i>
-                                    <span><strong>11:00 AM</strong> - Contemporary Worship</span>
+                                    <span><strong>AM</strong> - Contemporary Worship</span>
                                 </li>
                             </ul>
                             <p class="text-muted">
@@ -174,7 +174,7 @@
                             <ul class="list-unstyled">
                                 <li class="d-flex align-items-center mb-2">
                                     <i class="fas fa-clock text-muted me-2"></i>
-                                    <span><strong>Wednesday 6:30 PM</strong> - Bible Study & Prayer</span>
+                                    <span><strong>Thursdays and Fridays 7:30 PM</strong> - Online Bible Study & Prayer</span>
                                 </li>
                             </ul>
                             <p class="text-muted">
