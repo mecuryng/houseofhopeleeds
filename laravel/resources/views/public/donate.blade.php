@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" style="background-image:url('/images/church-bg.png');">
         <div class="container">
             <div class="text-center">
                 <h1 class="display-4 fw-bold mb-3">Giving</h1>
