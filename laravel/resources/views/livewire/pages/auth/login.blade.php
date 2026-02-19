@@ -124,12 +124,12 @@ new #[Layout('layouts.guest')] class extends Component
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="hoh-login-link" href="{{ route('password.request') }}" wire:navigate>
-                        {{ __('Forgot your password?') }}
+                        {{ __('Forgot yourttttt password?') }}
                     </a>
                 @endif
 
                 <button type="submit" class="hoh-login-btn ms-3">
-                    {{ __('Log in') }}
+                    {{ __('Log iiin') }}
                 </button>
             </div>
         </form>
