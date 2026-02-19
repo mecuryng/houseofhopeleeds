@@ -60,7 +60,7 @@
         <hr class="my-4 border-secondary ">
         <div class="text-center  small opacity-25">
             <p class=" small">
-                    &copy;  {{ date('Y') }} House of Hope Church Leeds. All rights reserved.
+                    &copy;  2025 - {{ date('Y') }} House of Hope Church Leeds. All rights reserved.
                 </p>
             House of Hope Church Leeds is a registered non-profit organization.
         </div>
