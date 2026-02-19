@@ -5,8 +5,9 @@
 @section('content')
 
 <!-- Hero Section -->
-    <section class="hero" style="background-image:url('/images/church-bg.png');">
-        <div class="container">
+    <section class="hero position-relative" style="background-image:url('/images/church-bg.png');">
+        <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100" style="background:rgba(0,0,0,0.5);pointer-events:none;z-index:1;"></div>
+        <div class="container position-relative" style="z-index:2;">
             <div class="hero-content">
                 <h1 class="display-4 fw-bold mb-3">Welcome to House of Hope Church Leeds</h1>
                 <p class="lead mb-4">A place to belong, grow, and shine.</p>
@@ -53,7 +54,10 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <div class="position-relative">
-                        <img src="https://placehold.co/600x400/1e40af/white?text=Our+Church+Building" alt="Church building" class="img-fluid rounded shadow">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/600x400/1e40af/white?text=Our+Church+Building" alt="Church building" class="img-fluid rounded shadow" style="opacity:0.7;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100" style="background:rgba(0,0,0,0.4);border-radius:inherit;"></div>
+                        </div>
                         <div class="position-absolute bottom-0 end-0 bg-white p-3 rounded shadow" style="width: 200px;">
                             <blockquote class="fst-italic text-dark mb-2">
                                 "For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope."

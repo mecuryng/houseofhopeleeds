@@ -4,8 +4,9 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="hero" style="background-image:url('/images/church-bg.png');">
-        <div class="container">
+    <section class="hero position-relative" style="background-image:url('/images/church-bg.png');">
+        <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100" style="background:rgba(0,0,0,0.5);pointer-events:none;z-index:1;"></div>
+        <div class="container position-relative" style="z-index:2;">
             <div class="text-center">
                 <h1 class="display-4 fw-bold mb-3">Giving</h1>
                 <p class="lead mb-4">Your generosity helps us fulfill our mission to love God, love people, and make disciples.</p>
