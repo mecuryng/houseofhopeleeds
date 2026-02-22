@@ -8,7 +8,7 @@
         <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100" style="background:rgba(0,0,0,0.5);pointer-events:none;z-index:1;"></div>
         <div class="container position-relative" style="z-index:2;">
             <div class="hero-content">
-                <h1 class="display-4 fw-bold mb-3">Welcome to House of Hope Church Leeds</h1>
+                <h1 class="display-4 fw-bold mb-3">About House of Hope Church Leeds</h1>
                 <p class="lead mb-4">A place to belong, grow, and shine.</p>
                 <div class="d-flex flex-wrap gap-5 justify-content-center">
                     <a href="{{ url('/donate') }}" class="btn btn-primary btn-lg px-4">
