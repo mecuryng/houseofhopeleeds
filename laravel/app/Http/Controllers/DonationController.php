@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Donation;
+use App\Models\DonationGoal;
 
 class DonationController extends Controller
 {
@@ -16,6 +17,7 @@ class DonationController extends Controller
             'amount' => 'required|numeric|min:1',
             'frequency' => 'required|in:one_time,recurring',
             'email' => 'nullable|email',
+            'donation_goal_id' => 'nullable|exists:donation_goals,id',
         ]);
 
         $amount = intval(round($request->input('amount') * 100));
@@ -24,6 +26,7 @@ class DonationController extends Controller
 
         $donation = Donation::create([
             'user_id' => auth()->id(),
+            'donation_goal_id' => $request->input('donation_goal_id'),
             'provider' => 'stripe',
             'amount' => $amount,
             'currency' => $currency,
@@ -113,6 +116,16 @@ class DonationController extends Controller
             if ($donation) {
                 $donation->status = 'succeeded';
                 $donation->save();
+
+                // Update donation goal progress if linked
+                if ($donation->donation_goal_id) {
+                    $goal = DonationGoal::find($donation->donation_goal_id);
+                    if ($goal) {
+                        $goal->current_amount = $goal->current_amount + ($donation->amount / 100);
+                        $goal->save();
+                    }
+                }
+
                 // send receipt email
                 if ($donation->email) {
                     Mail::to($donation->email)->send(new \App\Mail\DonationReceiptMail($donation));
@@ -147,6 +160,7 @@ class DonationController extends Controller
             'amount' => 'required|numeric|min:1',
             'frequency' => 'required|in:one_time,recurring',
             'email' => 'nullable|email',
+            'donation_goal_id' => 'nullable|exists:donation_goals,id',
         ]);
 
         $amount = number_format($request->input('amount'), 2, '.', '');
@@ -154,6 +168,7 @@ class DonationController extends Controller
 
         $donation = Donation::create([
             'user_id' => auth()->id(),
+            'donation_goal_id' => $request->input('donation_goal_id'),
             'provider' => 'paypal',
             'amount' => intval(round($amount * 100)),
             'currency' => 'USD',
@@ -313,6 +328,16 @@ class DonationController extends Controller
                 $donation->provider_id = $resource['id'] ?? null;
                 $donation->status = 'succeeded';
                 $donation->save();
+
+                // Update donation goal progress if linked
+                if ($donation->donation_goal_id) {
+                    $goal = DonationGoal::find($donation->donation_goal_id);
+                    if ($goal) {
+                        $goal->current_amount = $goal->current_amount + ($donation->amount / 100);
+                        $goal->save();
+                    }
+                }
+
                 if ($donation->email) {
                     Mail::to($donation->email)->send(new \App\Mail\DonationReceiptMail($donation));
                 }
@@ -325,6 +350,16 @@ class DonationController extends Controller
                 $donation->provider_id = $subId;
                 $donation->status = 'succeeded';
                 $donation->save();
+
+                // Update donation goal progress if linked
+                if ($donation->donation_goal_id) {
+                    $goal = DonationGoal::find($donation->donation_goal_id);
+                    if ($goal) {
+                        $goal->current_amount = $goal->current_amount + ($donation->amount / 100);
+                        $goal->save();
+                    }
+                }
+
                 if ($donation->email) {
                     Mail::to($donation->email)->send(new \App\Mail\DonationReceiptMail($donation));
                 }

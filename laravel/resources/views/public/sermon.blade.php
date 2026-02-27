@@ -76,19 +76,11 @@
                             </select>
                         </div>
                     @elseif($isAudio)
-                        <audio id="sermonAudio" controls style="width:100%;">
-                            <source src="{{ $media }}" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                        <div class="mt-2">
-                            <label for="speedAudio">Speed:</label>
-                            <select id="speedAudio" class="form-select form-select-sm d-inline-block" style="width:auto;margin-left:8px;">
-                                <option value="1">1x</option>
-                                <option value="1.25">1.25x</option>
-                                <option value="1.5">1.5x</option>
-                                <option value="2">2x</option>
-                            </select>
-                        </div>
+                        <x-audio-player 
+                            :src="$media" 
+                            :chapters="$sermon->chapters ?? []"
+                            :duration="$sermon->duration"
+                            id="sermon{{ $sermon->id }}" />
                     @else
                         <p class="text-muted">No media attached for this sermon. You can still read the notes below.</p>
                     @endif
@@ -182,6 +174,13 @@
                         </li>
                     @endforeach
                 </ul>
+            </div>
+            <div class="card p-3 mb-3">
+                <h5>Subscribe to Podcast</h5>
+                <p class="small text-muted">Get our sermons in your favorite podcast app</p>
+                <a href="{{ route('sermons.rss') }}" class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-rss me-1"></i> RSS Feed
+                </a>
             </div>
             <div class="card p-3">
                 <h5>Actions</h5>

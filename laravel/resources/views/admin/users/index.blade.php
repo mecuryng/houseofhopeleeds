@@ -49,7 +49,7 @@
                             </span>
                         </td>
                         <td>{{ $user->email_verified_at ? 'Yes' : 'No' }}</td>
-                        <td>{{ $user->created_at->format('M d, Y') }}</td>
+                        <td>{{ $user->created_at?->format('M d, Y') ?? '-' }}</td>
                         <td>
                             <a href="{{ route('admin.users.edit', $user) }}" style="color:#3b82f6;text-decoration:none;margin-right:1rem;">Edit</a>
                             @if($user->id !== auth()->id())

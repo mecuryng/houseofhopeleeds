@@ -16,7 +16,7 @@
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-v4compatibility.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Wf6grGQ_.css",
+    "file": "assets/app-rIlzdmst.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "names": [
@@ -24,7 +24,7 @@
     ]
   },
   "resources/css/church.css": {
-    "file": "assets/church-CrvSwT1B.css",
+    "file": "assets/church-DcmNL23k.css",
     "src": "resources/css/church.css",
     "isEntry": true,
     "names": [
