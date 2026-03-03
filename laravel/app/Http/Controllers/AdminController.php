@@ -21,6 +21,8 @@ class AdminController extends Controller
             'upcoming_events' => Event::where('date', '>=', now())->count(),
             'recent_sermons' => Sermon::count(),
             'newsletter_subscribers' => NewsletterSubscriber::active()->count(),
+            // basic dream count for dashboard stats
+            'dreams' => \App\Models\Dream::count(),
         ];
 
         $recent_donations = Donation::where('status', 'succeeded')

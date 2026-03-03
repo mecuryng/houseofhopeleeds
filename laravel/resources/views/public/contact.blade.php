@@ -33,11 +33,11 @@
             </div>
             <div class="col-md-3">
                 <i class="fas fa-clock me-2"></i>
-                <span>Saturday Services: 9:00 AM</span>
+                <span>Saturday Services: 10:30AM - 12:30 PM</span>
             </div>
             <div class="col-md-3">
                 <i class="fas fa-phone me-2"></i>
-                <span>+447359459090</span>
+                <span>+447869806075</span>
             </div>
             <div class="col-md-3">
                 <i class="fas fa-envelope me-2"></i>
@@ -61,14 +61,14 @@
                     <i class="fas fa-map-marker-alt fs-4 me-3 mt-1"></i>
                     <div>
                         <h5 class="h6">Address</h5>
-                        <p class="mb-0">123 Faith Street, Hope City, HC 12345</p>
+                        <p class="mb-0">Swarcliffe Community Centre, 65 Stanks Gardens, Leeds LS14 5LS</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-start mb-3">
                     <i class="fas fa-phone fs-4 me-3 mt-1"></i>
                     <div>
                         <h5 class="h6">Phone</h5>
-                        <p class="mb-0">(555) 123-4567</p>
+                        <p class="mb-0">+447869806075</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-start mb-3">
@@ -82,7 +82,7 @@
                     <i class="fas fa-clock fs-4 me-3 mt-1"></i>
                     <div>
                         <h5 class="h6">Office Hours</h5>
-                        <p class="mb-0">Monday-Friday: 9am-5pm</p>
+                        {{-- <p class="mb-0">Monday-Friday: 9am-5pm</p> --}}
                     </div>
                 </div>
 

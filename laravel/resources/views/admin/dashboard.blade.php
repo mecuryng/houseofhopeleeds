@@ -45,6 +45,14 @@
         <div class="col-md-6 col-lg-2">
             <div class="card h-100 text-center">
                 <div class="card-body">
+                    <h2 class="text-purple-500 mb-0">{{ $stats['dreams'] }}</h2>
+                    <small class="text-muted">Revelations</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-2">
+            <div class="card h-100 text-center">
+                <div class="card-body">
                     <h2 class="text-danger mb-0">{{ $stats['newsletter_subscribers'] }}</h2>
                     <small class="text-muted">Newsletter</small>
                 </div>
@@ -160,6 +168,11 @@
                         <div class="col-md-3">
                             <a href="{{ route('admin.newsletter.index') }}" class="btn btn-outline-primary w-100">
                                 <i class="fas fa-envelope me-2"></i> Newsletter
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{{ route('admin.dreams.create') }}" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-bed me-2"></i> Add Dream
                             </a>
                         </div>
                     </div>

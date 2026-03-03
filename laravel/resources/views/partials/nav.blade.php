@@ -15,14 +15,23 @@
                 <li class="nav-item">
                     <a class="nav-link @if(request()->is('about')) active @endif" href="{{ url('/about') }}">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link @if(request()->is('sermons*')) active @endif" href="{{ url('/sermons') }}">Sermons</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle @if(request()->is('sermons*') || request()->is('reflections*')) active @endif" href="#" id="teachingsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Teachings
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="teachingsDropdown">
+                        <li><a class="dropdown-item" href="{{ url('/sermons') }}">Sermons</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/reflections') }}">Reflections</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(request()->is('ministries')) active @endif" href="{{ url('/ministries') }}">Ministries</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(request()->is('events*')) active @endif" href="{{ url('/events') }}">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(request()->is('dreams*')) active @endif" href="{{ url('/dreams') }}">Revelations</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(request()->is('contact')) active @endif" href="{{ url('/contact') }}">Contact</a>

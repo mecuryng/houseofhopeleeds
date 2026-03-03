@@ -17,9 +17,7 @@
     @endif
 
     <div class="pastor-content" style="max-width:600px;margin:0 auto;">
-        <form action="{{ route('pastor.sermons.update', $sermon) }}" method="POST" style="background:white;padding:2rem;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
-            @csrf
-            @method('PUT')
+        <form action="{{ route('pastor.sermons.update', $sermon) }}" method="POST" style="background:white;padding:2rem;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.05);" enctype="multipart/form-data">
 
             <div style="margin-bottom:1.5rem;">
                 <label for="title" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#374151;">Title *</label>
@@ -40,6 +38,23 @@
                 <label for="video_url" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#374151;">Video/Audio URL</label>
                 <input type="text" id="video_url" name="video_url" value="{{ old('video_url', $sermon->video_url) }}" placeholder="https://youtube.com/... or https://vimeo.com/... or direct media URL" style="width:100%;padding:0.75rem;border:1px solid #d1d5db;border-radius:6px;">
                 <small style="color:#6b7280;">Optional: Add a video or audio link for this sermon</small>
+            </div>
+
+            <div style="margin-bottom:2rem;">
+                <label for="image" style="display:block;margin-bottom:0.5rem;font-weight:600;color:#374151;">Sermon Image (optional)</label>
+                @if($sermon->image_path)
+                    <div style="margin-bottom:12px;">
+                        <img src="{{ asset('storage/' . $sermon->image_path) }}" style="max-width:100%;max-height:150px;border-radius:6px;">
+                        <div style="margin-top:8px;">
+                            <label style="display:inline-flex;align-items:center;cursor:pointer;">
+                                <input type="checkbox" name="remove_image" style="margin-right:8px;">
+                                <span style="font-size:14px;">Remove current image</span>
+                            </label>
+                        </div>
+                    </div>
+                @endif
+                <input type="file" id="image" name="image" style="width:100%;padding:0.75rem;border:1px solid #d1d5db;border-radius:6px;">
+                <small style="color:#6b7280;">Upload an image to display above the sermon title</small>
             </div>
 
             <div style="display:flex;gap:1rem;align-items:center;">

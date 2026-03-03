@@ -148,6 +148,26 @@ Route::post('/groups/{group}/leave', [SmallGroupController::class, 'leave'])->mi
 // Donation Goals (public progress bars)
 Route::get('/goals', [DonationGoalController::class, 'index'])->name('goals.index');
 
+// Revelations & Visions public listing (still backed by Dream model)
+Route::get('/dreams', function () {
+    $dreams = \App\Models\Dream::latest()->paginate(10);
+    return view('public.dreams', compact('dreams'));
+})->name('dreams.index');
+
+Route::get('/dreams/{dream}', function (\App\Models\Dream $dream) {
+    return view('public.dream', compact('dream'));
+})->name('dreams.show');
+
+// Reflections public routes
+Route::get('/reflections', function () {
+    $reflections = \App\Models\Reflection::latest()->paginate(10);
+    return view('public.reflections', compact('reflections')); 
+})->name('reflections.index');
+
+Route::get('/reflections/{reflection}', function (\App\Models\Reflection $reflection) {
+    return view('public.reflection', compact('reflection'));
+})->name('reflections.show');
+
 // Member directory (auth required)
 Route::get('/directory', function () {
     $members = \App\Models\User::where('role', 'member')
@@ -171,6 +191,9 @@ Route::middleware(['auth', 'role:pastor'])->group(function () {
         Route::resource('sermons', PastorController::class)->parameters([
             'sermons' => 'sermon'
         ]);
+        // pastors can manage dreams as well
+        Route::resource('dreams', \App\Http\Controllers\DreamController::class);
+            Route::resource('reflections', \App\Http\Controllers\ReflectionController::class);
     });
 });
 
@@ -183,6 +206,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Admin event/sermon resources will be available at /admin/events and /admin/sermons
     Route::resource('events', EventController::class);
     Route::resource('sermons', SermonController::class);
+    Route::resource('dreams', \App\Http\Controllers\DreamController::class);
+    Route::resource('reflections', \App\Http\Controllers\ReflectionController::class);
     // Admin donations
     Route::get('donations', [App\Http\Controllers\Admin\DonationController::class, 'index'])->name('donations.index');
     Route::get('donations/{donation}', [App\Http\Controllers\Admin\DonationController::class, 'show'])->name('donations.show');

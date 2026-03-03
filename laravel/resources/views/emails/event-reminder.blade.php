@@ -114,7 +114,7 @@
         <p>
             House of Hope Church Leeds<br>
             Swarcliffe Community Centre, 65 Stanks Gardens, Leeds LS14 5LS<br>
-            <a href="tel:+447359459090">+447359459090</a>
+            <a href="tel:+447869806075">+447869806075</a>
         </p>
         
         <p>

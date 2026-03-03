@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.sermons.store') }}" method="POST" id="sermonForm">
+    <form action="{{ route('admin.sermons.store') }}" method="POST" id="sermonForm" enctype="multipart/form-data">
         @csrf
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
@@ -77,8 +77,13 @@
                 </div>
 
                 <div style="margin-bottom:16px;">
-                    <label style="display:block;margin-bottom:4px;font-weight:500;">Audio URL</label>
-                    <input type="url" name="audio_url" value="{{ old('audio_url') }}" style="width:100%;padding:8px;border:1px solid #d1d5db;border-radius:4px;" placeholder="https://...mp3">
+                    <label style="display:block;margin-bottom:4px;font-weight:500;">Video URL</label>
+                    <input type="url" name="video_url" value="{{ old('video_url') }}" style="width:100%;padding:8px;border:1px solid #d1d5db;border-radius:4px;" placeholder="https://youtube.com/...">
+                </div>
+
+                <div style="margin-bottom:16px;">
+                    <label style="display:block;margin-bottom:4px;font-weight:500;">Image (optional)</label>
+                    <input type="file" name="image" style="width:100%;">
                 </div>
 
                 <div style="display:flex;gap:16px;margin-bottom:16px;">

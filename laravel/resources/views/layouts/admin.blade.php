@@ -152,10 +152,12 @@
         <a href="{{ route('admin.members.index') }}">👥 Members</a>
         <a href="{{ route('admin.events.index') }}">📅 Events</a>
         <a href="{{ route('admin.sermons.index') }}">📖 Sermons</a>
+        <a href="{{ route('admin.reflections.index') }}">🪞 Reflections</a>
         <a href="{{ route('admin.sermon-comments.index') }}">💬 Sermon Comments</a>
         <a href="{{ route('admin.rsvps.index') }}">✅ RSVPs</a>
         <a href="{{ route('admin.prayer-requests.index') }}">🙏 Prayer Requests</a>
         <a href="#">💰 Donations</a>
+        <a href="{{ route('admin.dreams.index') }}">💭 Revelations</a>
 
         <div class="logout-btn">
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

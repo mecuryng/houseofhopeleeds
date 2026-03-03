@@ -32,6 +32,7 @@ class PastorController extends Controller
             'content' => 'nullable|string',
             'date_preached' => 'required|date',
             'video_url' => 'nullable|url'
+            ,'image' => 'nullable|image|max:10240'
         ]);
 
         $data = $request->only(['title', 'content', 'date_preached', 'video_url']);
@@ -41,6 +42,10 @@ class PastorController extends Controller
         if (isset($request->content)) {
             $data['description'] = $request->content;
             unset($data['content']);
+        }
+
+        if ($request->hasFile('image')) {
+            $data['image_path'] = $request->file('image')->store('sermons', 'public');
         }
 
         Sermon::create($data);
@@ -80,6 +85,7 @@ class PastorController extends Controller
             'content' => 'nullable|string',
             'date_preached' => 'required|date',
             'video_url' => 'nullable|url'
+            ,'image' => 'nullable|image|max:10240'
         ]);
 
         $data = $request->only(['title', 'content', 'date_preached', 'video_url']);
@@ -88,6 +94,19 @@ class PastorController extends Controller
         if (isset($request->content)) {
             $data['description'] = $request->content;
             unset($data['content']);
+        }
+
+        // handle image removal
+        if ($request->input('remove_image')) {
+            if ($sermon->image_path) {
+                \Storage::disk('public')->delete($sermon->image_path);
+            }
+            $data['image_path'] = null;
+        } elseif ($request->hasFile('image')) {
+            if ($sermon->image_path) {
+                \Storage::disk('public')->delete($sermon->image_path);
+            }
+            $data['image_path'] = $request->file('image')->store('sermons', 'public');
         }
 
         $sermon->update($data);
@@ -100,6 +119,10 @@ class PastorController extends Controller
         // Ensure pastor can only delete their own sermons
         if ($sermon->pastor_id !== auth()->id()) {
             abort(403, 'You can only delete your own sermons.');
+        }
+
+        if ($sermon->image_path) {
+            \Storage::disk('public')->delete($sermon->image_path);
         }
 
         $sermon->delete();

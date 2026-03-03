@@ -22,6 +22,7 @@ class Sermon extends Model
         'chapters',
         'duration',
         'thumbnail',
+        'image_path',
     ];
 
     protected $casts = [

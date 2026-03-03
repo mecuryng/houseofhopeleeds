@@ -31,11 +31,11 @@
                 </div>
                 <div class="col-md-4 mb-2 mb-md-0">
                     <i class="fas fa-clock me-2" aria-hidden="true"></i>
-                    <span>Saturday Services: <time>7:45 AM</time></span>
+                    <span>Saturday Service: <time>10:30AM - 12:30PM</time></span>
                 </div>
                 <div class="col-md-4">
                     <i class="fas fa-phone me-2" aria-hidden="true"></i>
-                    <a href="tel:+447359459090" class="text-white text-decoration-none">+447359459090</a>
+                    <a href="tel:+447869806075" class="text-white text-decoration-none">+447869806075</a>
                 </div>
             </div>
         </div>
@@ -141,11 +141,11 @@
                             <ul class="list-unstyled">
                                 <li class="d-flex align-items-center mb-2">
                                     <i class="fas fa-clock text-muted me-2" aria-hidden="true"></i>
-                                    <span><time><strong>7:45AM</strong></time> - Traditional Worship</span>
+                                    <span><time><strong>10:30AM - 12:30 PM</strong></time> - Traditional Worship</span>
                                 </li>
                                 <li class="d-flex align-items-center mb-2">
                                     <i class="fas fa-clock text-muted me-2" aria-hidden="true"></i>
-                                    <span><strong>AM</strong> - Contemporary Worship</span>
+                                    {{-- <span><strong>AM</strong> - Contemporary Worship</span> --}}
                                 </li>
                             </ul>
                             <p class="text-muted">
@@ -164,12 +164,16 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fas fa-moon text-info fs-2 me-3" aria-hidden="true"></i>
-                                <h3 class="h4 mb-0">Midweek Services</h3>
+                                <h3 class="h4 mb-0">Bible: studies</h3>
                             </div>
                             <ul class="list-unstyled">
                                 <li class="d-flex align-items-center mb-2">
                                     <i class="fas fa-clock text-muted me-2" aria-hidden="true"></i>
-                                    <span><time><strong>Thursdays and Fridays 7:30 PM</strong></time> - Online Bible Study & Prayer</span>
+                                    <span><time><strong>Thursdays - Old Testament 7:30 PM</strong></time> - Online Bible Study & Prayer</span>
+                                </li>
+                                <li class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-clock text-muted me-2" aria-hidden="true"></i>
+                                    <span><time><strong>Fridays - New Testament 7:30 PM</strong></time> - Online Bible Study & Prayer</span>
                                 </li>
                             </ul>
                             <p class="text-muted">
@@ -334,17 +338,17 @@
                             <i class="fas fa-star text-warning" aria-hidden="true"></i>
                             <i class="fas fa-star text-warning" aria-hidden="true"></i>
                         </div>
-                        <blockquote class="fst-italic mb-3">
+                        {{-- <blockquote class="fst-italic mb-3">
                             "This church has become my family. The love and support I've received here has transformed my life."
-                        </blockquote>
+                        </blockquote> --}}
                         <div class="d-flex align-items-center">
                             <div class="me-3" aria-hidden="true">
                                 <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">S</div>
                             </div>
-                            <div>
+                            {{-- <div>
                                 <strong>Sarah Johnson</strong>
                                 <p class="mb-0 text-muted small">Member for 5 years</p>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </article>
@@ -357,17 +361,17 @@
                             <i class="fas fa-star text-warning" aria-hidden="true"></i>
                             <i class="fas fa-star text-warning" aria-hidden="true"></i>
                         </div>
-                        <blockquote class="fst-italic mb-3">
+                        {{-- <blockquote class="fst-italic mb-3">
                             "I was nervous about visiting, but everyone made me feel so welcome. The message was exactly what I needed to hear."
-                        </blockquote>
+                        </blockquote> --}}
                         <div class="d-flex align-items-center">
                             <div class="me-3" aria-hidden="true">
                                 <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">M</div>
                             </div>
-                            <div>
+                            {{-- <div>
                                 <strong>Michael Chen</strong>
                                 <p class="mb-0 text-muted small">New Visitor</p>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </article>
@@ -380,17 +384,17 @@
                             <i class="fas fa-star text-warning" aria-hidden="true"></i>
                             <i class="fas fa-star text-warning" aria-hidden="true"></i>
                         </div>
-                        <blockquote class="fst-italic mb-3">
+                        {{-- <blockquote class="fst-italic mb-3">
                             "Our mission is simple: Love God, Love People, and Make Disciples. We're so glad you're here!"
-                        </blockquote>
+                        </blockquote> --}}
                         <div class="d-flex align-items-center">
                             <div class="me-3" aria-hidden="true">
                                 <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">P</div>
                             </div>
-                            <div>
+                            {{-- <div>
                                 <strong>Pastor David Williams</strong>
                                 <p class="mb-0 text-muted small">Senior Pastor</p>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </article>
@@ -419,7 +423,7 @@
                             <i class="fas fa-phone fs-4 me-3 mt-1" aria-hidden="true"></i>
                             <div>
                                 <strong class="d-block">Phone</strong>
-                                <a href="tel:+447359459090" class="text-white text-decoration-none">+447359459090</a>
+                                <a href="tel:+447869806075" class="text-white text-decoration-none">+447869806075</a>
                             </div>
                         </div>
                         <div class="d-flex align-items-start mb-3">

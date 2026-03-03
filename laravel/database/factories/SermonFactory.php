@@ -18,6 +18,7 @@ class SermonFactory extends Factory
             'pastor_id' => User::factory(),
             'video_url' => $this->faker->url,
             'date' => $this->faker->date(),
+            'image_path' => null,
             'created_at' => now(),
             'updated_at' => now(),
         ];

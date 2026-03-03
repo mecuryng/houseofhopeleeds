@@ -44,6 +44,7 @@ class SermonController extends Controller
             'duration' => 'nullable|string|max:20',
             'thumbnail' => 'nullable|url|max:500',
             'chapters' => 'nullable|json',
+            'image' => 'nullable|image|max:10240',
         ]);
 
         $data = $validated;
@@ -55,6 +56,11 @@ class SermonController extends Controller
         }
         if (isset($validated['chapters'])) {
             $data['chapters'] = json_decode($validated['chapters'], true);
+        }
+
+        // handle uploaded image (admin may choose to attach)
+        if ($request->hasFile('image')) {
+            $data['image_path'] = $request->file('image')->store('sermons', 'public');
         }
 
         Sermon::create($data);
@@ -83,6 +89,8 @@ class SermonController extends Controller
             'duration' => 'nullable|string|max:20',
             'thumbnail' => 'nullable|url|max:500',
             'chapters' => 'nullable|json',
+            'image' => 'nullable|image|max:10240',
+            'remove_image' => 'nullable|boolean',
         ]);
 
         $data = $validated;
@@ -96,12 +104,33 @@ class SermonController extends Controller
             $data['chapters'] = json_decode($validated['chapters'], true);
         }
 
+        // remove remove_image from data array since it's not a column
+        unset($data['remove_image']);
+
+        // handle image removal
+        if ($request->input('remove_image')) {
+            if ($sermon->image_path) {
+                \Storage::disk('public')->delete($sermon->image_path);
+            }
+            $data['image_path'] = null;
+        } elseif ($request->hasFile('image')) {
+            // remove previous image if there was one
+            if ($sermon->image_path) {
+                \Storage::disk('public')->delete($sermon->image_path);
+            }
+            $data['image_path'] = $request->file('image')->store('sermons', 'public');
+        }
+
         $sermon->update($data);
         return redirect()->route('admin.sermons.index')->with('success', 'Sermon updated successfully.');
     }
 
     public function destroy(Sermon $sermon)
     {
+        // delete attached image if it exists
+        if ($sermon->image_path) {
+            \Storage::disk('public')->delete($sermon->image_path);
+        }
         $sermon->delete();
         return redirect()->route('admin.sermons.index')->with('success', 'Sermon deleted successfully.');
     }

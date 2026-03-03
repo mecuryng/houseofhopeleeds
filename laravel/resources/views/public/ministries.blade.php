@@ -151,7 +151,7 @@
                     <i class="fas fa-phone fs-4 me-3 mt-1"></i>
                     <div>
                         <h5 class="h6">Phone</h5>
-                        <p class="mb-0">(555) 123-4567</p>
+                        <p class="mb-0">+447869806075</p>
                     </div>
                 </div>
                 <div class="d-flex align-items-start mb-3">
@@ -165,7 +165,7 @@
                     <i class="fas fa-clock fs-4 me-3 mt-1"></i>
                     <div>
                         <h5 class="h6">Office Hours</h5>
-                        <p class="mb-0">Monday-Friday: 9am-5pm</p>
+                        {{-- <p class="mb-0">Monday-Friday: 9am-5pm</p> --}}
                     </div>
                 </div>
             </div>

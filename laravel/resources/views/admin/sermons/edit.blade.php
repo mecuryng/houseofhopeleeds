@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.sermons.update', $sermon) }}" method="POST" id="sermonForm">
+    <form action="{{ route('admin.sermons.update', $sermon) }}" method="POST" id="sermonForm" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -78,8 +78,24 @@
                 </div>
 
                 <div style="margin-bottom:16px;">
-                    <label style="display:block;margin-bottom:4px;font-weight:500;">Audio URL</label>
-                    <input type="url" name="audio_url" value="{{ old('audio_url', $sermon->audio_url) }}" style="width:100%;padding:8px;border:1px solid #d1d5db;border-radius:4px;" placeholder="https://...mp3">
+                    <label style="display:block;margin-bottom:4px;font-weight:500;">Video URL</label>
+                    <input type="url" name="video_url" value="{{ old('video_url', $sermon->video_url) }}" style="width:100%;padding:8px;border:1px solid #d1d5db;border-radius:4px;" placeholder="https://youtube.com/...">
+                </div>
+
+                <div style="margin-bottom:16px;">
+                    <label style="display:block;margin-bottom:4px;font-weight:500;">Image (optional)</label>
+                    @if($sermon->image_path)
+                        <div style="margin-bottom:12px;">
+                            <img src="{{ asset('storage/' . $sermon->image_path) }}" style="max-width:100%;max-height:150px;border-radius:4px;">
+                            <div style="margin-top:8px;">
+                                <label style="display:inline-flex;align-items:center;cursor:pointer;">
+                                    <input type="checkbox" name="remove_image" style="margin-right:8px;">
+                                    <span style="font-size:14px;">Remove current image</span>
+                                </label>
+                            </div>
+                        </div>
+                    @endif
+                    <input type="file" name="image" style="width:100%;">
                 </div>
 
                 <div style="display:flex;gap:16px;margin-bottom:16px;">

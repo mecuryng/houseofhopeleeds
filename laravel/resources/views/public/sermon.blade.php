@@ -26,6 +26,9 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card p-4">
+                @if($sermon->image_path)
+                    <img src="{{ asset('storage/' . $sermon->image_path) }}" style="width:100%;max-height:400px;object-fit:cover;border-radius:8px;margin-bottom:20px;">
+                @endif
                 <h1 class="mb-2">{{ $sermon->title }}</h1>
                 @if($sermon->pastor)
                     <p class="text-muted">By {{ $sermon->pastor->name }}</p>
