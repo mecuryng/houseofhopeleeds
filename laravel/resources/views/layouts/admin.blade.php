@@ -154,6 +154,7 @@
         <a href="{{ route('admin.sermons.index') }}">📖 Sermons</a>
         <a href="{{ route('admin.reflections.index') }}">🪞 Reflections</a>
         <a href="{{ route('admin.sermon-comments.index') }}">💬 Sermon Comments</a>
+        <a href="{{ route('admin.reflection-comments.index') }}">💬 Reflection Comments</a>
         <a href="{{ route('admin.rsvps.index') }}">✅ RSVPs</a>
         <a href="{{ route('admin.prayer-requests.index') }}">🙏 Prayer Requests</a>
         <a href="#">💰 Donations</a>

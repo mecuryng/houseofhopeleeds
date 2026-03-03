@@ -180,5 +180,47 @@
             </div>
         </div>
     </div>
+
+    <div class="row g-4 mt-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Recent Reflection Comments</h5>
+                    <a href="{{ route('admin.reflection-comments.index') }}" class="btn btn-sm btn-outline-primary">Manage All</a>
+                </div>
+                <div class="card-body">
+                    @if(!empty($recent_reflection_comments) && $recent_reflection_comments->count())
+                        <ul class="list-unstyled mb-0">
+                            @foreach($recent_reflection_comments as $comment)
+                                <li class="mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <strong>{{ $comment->name ?? $comment->user?->name ?? 'Anonymous' }}</strong>
+                                            <small class="text-muted ms-2">on <a href="{{ route('admin.reflections.edit', $comment->reflection) }}">{{ Str::limit($comment->reflection->title, 60) }}</a></small>
+                                            <div class="text-truncate" style="max-width:420px;">{{ Str::limit($comment->content, 120) }}</div>
+                                            <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+                                        </div>
+                                        <div class="text-end">
+                                            <form action="{{ route('admin.reflection-comments.approve', $comment) }}" method="POST" style="display:inline-block;">
+                                                @csrf
+                                                <button class="btn btn-sm btn-outline-secondary" type="submit">{{ $comment->approved ? 'Unapprove' : 'Approve' }}</button>
+                                            </form>
+                                            <form action="{{ route('admin.reflection-comments.destroy', $comment) }}" method="POST" style="display:inline-block;margin-left:6px;" onsubmit="return confirm('Delete this comment?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p class="text-muted mb-0">No recent reflection comments.</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

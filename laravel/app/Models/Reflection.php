@@ -25,4 +25,14 @@ class Reflection extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(ReflectionComment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(ReflectionLike::class);
+    }
 }

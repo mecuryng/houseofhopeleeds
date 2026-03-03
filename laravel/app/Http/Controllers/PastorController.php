@@ -84,8 +84,9 @@ class PastorController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'nullable|string',
             'date_preached' => 'required|date',
-            'video_url' => 'nullable|url'
-            ,'image' => 'nullable|image|max:10240'
+            'video_url' => 'nullable|url',
+            'image' => 'nullable|image|max:10240',
+            'remove_image' => 'nullable|boolean',
         ]);
 
         $data = $request->only(['title', 'content', 'date_preached', 'video_url']);

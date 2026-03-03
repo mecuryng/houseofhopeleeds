@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\NewsletterSubscriber;
 use App\Models\Rsvp;
 use Illuminate\Http\Request;
+use App\Models\ReflectionComment;
 
 class AdminController extends Controller
 {
@@ -35,7 +36,13 @@ class AdminController extends Controller
             ->take(5)
             ->get();
 
-        return view('admin.dashboard', compact('stats', 'recent_donations', 'upcoming_events'));
+        // recent reflection comments for quick moderation
+        $recent_reflection_comments = ReflectionComment::with('reflection')
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('admin.dashboard', compact('stats', 'recent_donations', 'upcoming_events', 'recent_reflection_comments'));
     }
 
     public function pastor()

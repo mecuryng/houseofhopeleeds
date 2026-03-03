@@ -10,6 +10,7 @@ use App\Http\Controllers\RsvpController;
 use App\Http\Controllers\SermonInteractionController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PrayerRequestController;
+use App\Http\Controllers\ReflectionInteractionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PastorController;
 use App\Http\Controllers\DonationController;
@@ -94,6 +95,10 @@ Route::get('/sermons/{sermon}', function (Sermon $sermon) {
 // Sermon interactions: comments and likes
 Route::post('/sermons/{sermon}/comments', [SermonInteractionController::class, 'storeComment'])->name('sermons.comments.store');
 Route::post('/sermons/{sermon}/like', [SermonInteractionController::class, 'toggleLike'])->name('sermons.like.toggle');
+
+// Reflection interactions: comments and likes (similar pattern to sermons)
+Route::post('/reflections/{reflection}/comments', [ReflectionInteractionController::class, 'storeComment'])->name('reflections.comments.store');
+Route::post('/reflections/{reflection}/like', [ReflectionInteractionController::class, 'toggleLike'])->name('reflections.like.toggle');
 
 Route::get('/staff', function () {
     $staff = \App\Models\User::where('role', '!=', 'member')->orderBy('name')->get();
@@ -223,6 +228,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('sermon-comments', [App\Http\Controllers\SermonInteractionController::class, 'indexComments'])->name('sermon-comments.index');
     Route::post('sermon-comments/{comment}/approve', [App\Http\Controllers\SermonInteractionController::class, 'approve'])->name('sermon-comments.approve');
     Route::delete('sermon-comments/{comment}', [App\Http\Controllers\SermonInteractionController::class, 'destroyComment'])->name('sermon-comments.destroy');
+
+    // Reflection comments moderation
+    Route::get('reflection-comments', [App\Http\Controllers\ReflectionInteractionController::class, 'indexComments'])->name('reflection-comments.index');
+    Route::post('reflection-comments/{comment}/approve', [App\Http\Controllers\ReflectionInteractionController::class, 'approve'])->name('reflection-comments.approve');
+    Route::delete('reflection-comments/{comment}', [App\Http\Controllers\ReflectionInteractionController::class, 'destroyComment'])->name('reflection-comments.destroy');
 
     // Admin: Prayer requests
     Route::get('prayer-requests', [PrayerRequestController::class, 'adminIndex'])->name('prayer-requests.index');
