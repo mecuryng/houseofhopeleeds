@@ -42,9 +42,10 @@
                             <h3 class="h4 mb-0">Children's Ministry</h3>
                         </div>
                         <p class="card-text mb-4">
-                            Our Children's Ministry provides fun, safe, and engaging programs for kids ages 0-12.
+                            {{-- Our Children's Ministry provides fun, safe, and engaging programs for kids ages 0-12.
                             Through age-appropriate lessons, games, and activities, we help children learn about God's love,
-                            develop friendships, and grow in their faith.
+                            develop friendships, and grow in their faith. --}}
+                            <h1 class="h5 text-muted">Coming soon!</h1>
                         </p>
                         <div class="d-flex flex-wrap gap-2">
                             <span class="badge bg-primary">Ages 0-12</span>
@@ -64,9 +65,10 @@
                             <h3 class="h4 mb-0">Youth Group</h3>
                         </div>
                         <p class="card-text mb-4">
-                            Our Youth Group offers dynamic programs for middle and high school students.
+                            {{-- Our Youth Group offers dynamic programs for middle and high school students.
                             Through Bible studies, outreach activities, and fellowship opportunities,
-                            teens can explore their faith, build lasting friendships, and discover their purpose.
+                            teens can explore their faith, build lasting friendships, and discover their purpose. --}}
+                            <h1 class="h5 text-muted">Coming soon!</h1>
                         </p>
                         <div class="d-flex flex-wrap gap-2">
                             <span class="badge bg-success">Grades 6-12</span>
@@ -86,9 +88,10 @@
                             <h3 class="h4 mb-0">Adult Fellowship</h3>
                         </div>
                         <p class="card-text mb-4">
-                            Our Adult Fellowship groups provide opportunities for spiritual growth through
+                            {{-- Our Adult Fellowship groups provide opportunities for spiritual growth through
                             small group Bible studies, prayer meetings, and community service projects.
-                            Whether you're new to faith or a lifelong believer, there's a place for you here.
+                            Whether you're new to faith or a lifelong believer, there's a place for you here. --}}
+                            <h1 class="h5 text-muted">Coming soon!</h1>
                         </p>
                         <div class="d-flex flex-wrap gap-2">
                             <span class="badge bg-info">All Ages</span>
@@ -108,9 +111,9 @@
                             <h3 class="h4 mb-0">Missions</h3>
                         </div>
                         <p class="card-text mb-4">
-                            Our Missions Ministry focuses on local and global outreach, serving our community
-                            and spreading God's love around the world. From feeding the hungry to supporting
-                            international mission work, we believe in being the hands and feet of Jesus.
+                                Our Missions Ministry focuses on local and global outreach, serving our community
+                                and spreading God's love around the world. From feeding the hungry to supporting
+                                international mission work, we believe in being the hands and feet of Jesus.
                         </p>
                         <div class="d-flex flex-wrap gap-2">
                             <span class="badge bg-danger">Local Outreach</span>
