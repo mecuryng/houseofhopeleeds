@@ -25,9 +25,9 @@
             <div class="text-center mb-5">
                 <h2 class="section-title">Our Sermons</h2>
                 <p class="text-muted">Experience inspiring messages and biblical teaching</p>
-                <a href="{{ route('sermons.rss') }}" class="btn btn-sm btn-outline-primary mt-2">
+                {{-- <a href="{{ route('sermons.rss') }}" class="btn btn-sm btn-outline-primary mt-2">
                     <i class="fas fa-rss me-1" aria-hidden="true"></i> Subscribe to Podcast RSS
-                </a>
+                </a> --}}
             </div>
 
             <form method="GET" action="{{ route('sermons') }}" class="mb-4" role="search" aria-label="Search sermons">

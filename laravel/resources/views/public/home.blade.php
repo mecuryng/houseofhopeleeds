@@ -222,7 +222,8 @@
                             <i class="fas fa-child"></i>
                         </div>
                         <h3 class="h5">Children's Ministry</h3>
-                        <p class="text-muted">Fun, safe, and engaging programs for ages 0-12</p>
+                        {{-- <p class="text-muted">Fun, safe, and engaging programs for ages 0-12</p> --}}
+                        <p class="text-muted">Coming soon!</p>
                     </div>
                 </article>
                 <article class="col-md-6 col-lg-3">
@@ -231,7 +232,8 @@
                             <i class="fas fa-user-graduate"></i>
                         </div>
                         <h3 class="h5">Youth Group</h3>
-                        <p class="text-muted">Dynamic programs for middle and high school students</p>
+                        {{-- <p class="text-muted">Dynamic programs for middle and high school students</p> --}}
+                        <p class="text-muted">Coming soon!</p>
                     </div>
                 </article>
                 <article class="col-md-6 col-lg-3">
@@ -240,7 +242,8 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <h3 class="h5">Adult Fellowship</h3>
-                        <p class="text-muted">Small groups and Bible studies for spiritual growth</p>
+                        {{-- <p class="text-muted">Small groups and Bible studies for spiritual growth</p> --}}
+                        <p class="text-muted">Coming soon!</p>
                     </div>
                 </article>
                 <article class="col-md-6 col-lg-3">
