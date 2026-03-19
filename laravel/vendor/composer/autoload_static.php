@@ -8406,7 +8406,6 @@ class ComposerStaticInita491aa2fc46801e4d07380731654b98e
         'Tests\\Feature\\Auth\\TwoFactorChallengeTest' => __DIR__ . '/../..' . '/tests/Feature/Auth/TwoFactorChallengeTest.php',
         'Tests\\Feature\\DashboardTest' => __DIR__ . '/../..' . '/tests/Feature/DashboardTest.php',
         'Tests\\Feature\\DreamsTest' => __DIR__ . '/../..' . '/tests/Feature/DreamsTest.php',
-        'Tests\\Feature\\ReflectionCommentsDashboardTest' => __DIR__ . '/../..' . '/tests/Feature/ReflectionCommentsDashboardTest.php',
         'Tests\\Feature\\ReflectionsTest' => __DIR__ . '/../..' . '/tests/Feature/ReflectionsTest.php',
         'Tests\\Feature\\SermonImageTest' => __DIR__ . '/../..' . '/tests/Feature/SermonImageTest.php',
         'Tests\\Feature\\Settings\\PasswordUpdateTest' => __DIR__ . '/../..' . '/tests/Feature/Settings/PasswordUpdateTest.php',

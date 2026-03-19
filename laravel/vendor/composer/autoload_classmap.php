@@ -7732,7 +7732,6 @@ return array(
     'Tests\\Feature\\Auth\\TwoFactorChallengeTest' => $baseDir . '/tests/Feature/Auth/TwoFactorChallengeTest.php',
     'Tests\\Feature\\DashboardTest' => $baseDir . '/tests/Feature/DashboardTest.php',
     'Tests\\Feature\\DreamsTest' => $baseDir . '/tests/Feature/DreamsTest.php',
-    'Tests\\Feature\\ReflectionCommentsDashboardTest' => $baseDir . '/tests/Feature/ReflectionCommentsDashboardTest.php',
     'Tests\\Feature\\ReflectionsTest' => $baseDir . '/tests/Feature/ReflectionsTest.php',
     'Tests\\Feature\\SermonImageTest' => $baseDir . '/tests/Feature/SermonImageTest.php',
     'Tests\\Feature\\Settings\\PasswordUpdateTest' => $baseDir . '/tests/Feature/Settings/PasswordUpdateTest.php',
